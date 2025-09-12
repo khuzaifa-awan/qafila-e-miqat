@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FCF6EC;
+  --foreground: #4A4A4A;
+  --primary: #AD5628;
+  --accent: #FCF6EC;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-poppins);
+}
+
+/* -------------------------------Horizon Font------------------------------- */
+@font-face {
+  font-family: 'Horizon';
+  src: url('/fonts/Horizon.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.announcement-banner {
+  background-color: #C69C4F;
+  color: white;
+  padding: 0.75rem 0;
+}
+
+button {
+  color: inherit; /* Do not force foreground color */
+}
+
+/* Announcement bar slide animation */
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-slideOut {
+  animation: slideOut 0.5s ease-in forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 1s ease-out forwards;
+}
+
+/* Paragraph animation with delay */
+.animate-slideUp-delay {
+  animation: slideUp 1s ease-out forwards;
+  animation-delay: 0.3s; /* Starts 0.3s after h1 */
+}
+
+/* Main heading slide-up animation */
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 1s ease-out forwards;
+}
+
+/* Zoom-out effect */
+@keyframes zoomOut {
+  0% {
+    transform: scale(0.5);  /* Start small */
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);  /* Go slightly larger */
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);    /* Settle at normal size */
+    opacity: 1;
+  }
+}
+
+/* Normal zoom animation */
+.animate-zoom {
+  animation: zoomOut 1s ease-out forwards;
+}
+
+/* Zoom animation with delay */
+.animate-zoom-delay {
+  animation: zoomOut 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* Second button delay for staggered effect */
+.animate-zoom-delay-2 {
+  animation: zoomOut 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+@keyframes zoomInOut {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.zoom-animation {
+  animation: zoomInOut 1.5s ease-in-out forwards;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+/* CSS for the holographic effect */
+.holographic-btn {
+  transition: all 0.3s ease;
+}
+
+.holographic-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(173, 86, 40, 0.1),
+    rgba(252, 246, 236, 0.2),
+    rgba(173, 86, 40, 0.1)
+  );
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.holographic-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(173, 86, 40, 0.5);
+}
+
+.holographic-btn:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(100%);
+}
+
+.radial-background {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(
+      transparent 29%,
+      rgba(173, 86, 40, 0.1) 30%,
+      rgba(173, 86, 40, 0.1) 50%,
+      transparent 51%,
+      transparent 74%,
+      rgba(173, 86, 40, 0.1) 75%,
+      rgba(173, 86, 40, 0.1) 95%,
+      transparent 96%
+    );
+  background-size: 3em 3em;
+  background-color: #fcf6ec;
+  opacity: 1;
+}
+
+.button-name {
+  align-items: center;
+  appearance: none;
+  background-color: #ad5628; /* primary */
+  border-radius: 8px;
+  border: none;
+  color: #fcf6ec; /* text color matches bg */
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  padding: 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  box-shadow:
+    rgba(173, 86, 40, 0.3) 0 2px 6px,
+    rgba(173, 86, 40, 0.25) 0 6px 12px -3px,
+    #f1e7de 0 -2px 0 inset;
+}
+
+.button-name:hover {
+  background-color: #933f1b; /* darker hover */
+  transform: translateY(-2px);
+  box-shadow:
+    rgba(173, 86, 40, 0.4) 0 4px 8px,
+    rgba(173, 86, 40, 0.3) 0 7px 13px -3px,
+    #f1e7de 0 -2px 0 inset;
+}
+
+.button-name:active {
+  background-color: #7a2f13; /* pressed state */
+  transform: translateY(2px);
+  box-shadow: #f1e7de 0 3px 7px inset;
+}
+
+.button-name:focus {
+  outline: none;
+  box-shadow:
+    #f1e7de 0 0 0 2px inset,
+    rgba(173, 86, 40, 0.5) 0 2px 6px,
+    rgba(173, 86, 40, 0.35) 0 6px 12px -3px,
+    #f1e7de 0 -2px 0 inset;
+}
