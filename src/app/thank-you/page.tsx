@@ -3,36 +3,15 @@
 import Image from "next/image";
 import { CircleCheckBig, Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import Link from "next/link";
+import { HeaderT } from "@/components/HeaderT";
 
 export default function ThankYouPage() {
   return (
     <div className="font-sans bg-[url('/thank-you-bg.svg')] bg-no-repeat bg-cover bg-center min-h-screen flex flex-col relative">
-      {/* ✅ Home Button */}
-      <header className="flex justify-between items-center pt-4 sm:pt-6 lg:pt-12 px-4 sm:px-6 lg:px-24 mt-0 absolute w-full top-0 left-0 z-10">
-                <Image
-                  src="/images/logo.svg"
-                  alt="Qafila-e-Miqat Travel and Tours"
-                  width={60}
-                  height={90}
-                  priority
-                  className= "w-12 h-16 sm:w-16 sm:h-24"
-                />
-      
-                {/* Book Now Button Zoom Animation */}
-                <Link href="/">
-                  <button
-                    style={{ backgroundColor: "#AD5628", color: "#FCF6EC" }}
-                    className="px-4 py-2 sm:px-8 sm:py-3.5 rounded-md font-medium text-sm sm:text-base 
-                              transition-all duration-300 transform hover:scale-105 hover:opacity-90 hover:shadow-lg"
-                  >
-                    Home
-                  </button>
-                </Link>
-              </header>
+      <HeaderT />
 
       {/* ✅ Main Content */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-20 px-6 sm:px-10 lg:px-20 pt-2 lg:pt-4 flex-grow">
+      <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-5 lg:gap-20 px-6 sm:px-10 lg:px-20 pt-2 lg:pt-4 flex-grow">
         
         {/* ✅ Illustration (Top on mobile, Right on desktop) */}
         <div className="order-1 lg:order-2 w-full lg:w-1/2 relative flex justify-center">
@@ -69,11 +48,11 @@ export default function ThankYouPage() {
           {/* Contact Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
             <a
-              href="mailto:help@qafilaemiqat.com"
+              href="mailto:qafilaemiqat@gmail.com"
               className="flex items-center gap-2 bg-[#AD5628] text-white font-medium px-5 py-3 rounded-md shadow-md hover:opacity-90 transition"
             >
               <Mail className="w-5 h-5" />
-              help@qafilaemiqat.com
+              qafilaemiqat@gmail.com
             </a>
             <a
               href="https://wa.me/923000000000"

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import AnnouncementBar from "@/components/ui/announcementBar";
 import AirlineTrustSection from "@/components/AirlineTrustSection";
 import PackageTierSection from "@/components/PackageTierSection";
 import HeroCanvas from '@/components/HeroCanvas'; 
@@ -9,45 +10,20 @@ import FacilitiesSection from "@/components/FacilitiesSection";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import Newsletter from "@/components/NewsLetterSection";
 
 
 export default function Home() {
-  // State types are inferred automatically, but we can be explicit
-  const [currentAnnouncementIndex, setCurrentAnnouncementIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const announcements: string[] = [
-    "✨ October Packages Are Live 🕋",
-    "⏳ Limited seats for October Umrah. Reserve today!",
-    "🎉 Special Group Discounts Available",
-    "🌟 VIP Services Available for Premium Experience"
-  ];
-
   useEffect(() => {
- 
     setIsVisible(true);
-
-    const interval = setInterval(() => {
-      setCurrentAnnouncementIndex(
-        (prevIndex) => (prevIndex + 1) % announcements.length
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [announcements.length]);
+  }, []);
 
   return (
     <div className="font-sans min-h-screen bg-background">
       {/* Announcement Banner */}
-      <div className="announcement-banner w-full text-center py-3 overflow-hidden relative">
-        <div
-          key={currentAnnouncementIndex}
-          className="animate-slideIn text-sm font-medium"
-        >
-          {announcements[currentAnnouncementIndex]}
-        </div>
-      </div>
-
+      <AnnouncementBar/>
       {/* Hero Section */}
       {/* <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative"> */}
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative h-screen flex flex-col pt-8">
@@ -70,7 +46,7 @@ export default function Home() {
           />
 
           {/* Book Now Button Zoom Animation */}
-          <Link href="/custom-package">
+          <Link href="/umrah-packages">
             <button
               style={{ backgroundColor: "#AD5628", color: "#FCF6EC" }}
               className="px-4 py-2 sm:px-8 sm:py-3.5 rounded-md font-medium text-sm sm:text-base 
@@ -82,11 +58,9 @@ export default function Home() {
         </header>
 
         {/* Hero Content */}
-        {/* <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 py-4 md:py-8 relative"> */}
         <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 pt-4 lg:pt-0 pb-8 relative">
 
           {/* Left Side Text */}
-          {/* <div className="w-full md:w-[55%] order-2 md:order-1 pr-1 sm:pr-2 lg:pr-3 relative z-10 md:pt-24"> */}
           <div className="w-full md:w-[55%] order-2 md:order-1 pr-1 sm:pr-2 lg:pr-3 relative z-10 lg:pt-24">
 
             {/* Heading Slide-Up */}
@@ -176,6 +150,7 @@ export default function Home() {
         <div className="h-screen w-full" />
 
 
+
         {/* Airplane Section */}
         <section className="relative h-screen flex items-center px-8 md:px-12">
           <div className="flex flex-col items-start z-20">
@@ -191,7 +166,7 @@ export default function Home() {
 
 
         {/* Mecca Section */}
-        <section className="relative h-[200vh] flex items-center px-8 md:px-12">
+        <section className="relative h-[275vh] lg:h-[200vh] flex items-center px-8 md:px-12">
           <div className=" sticky top-1/2 -translate-y-1/2 flex flex-col items-start z-20 pt-20 md:pt-0">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FCF6EC] max-w-[600px] leading-tight">
               The Heart of Faith, The House of Allah   
@@ -199,11 +174,13 @@ export default function Home() {
             <p className="text-lg italic text-[#FCF6EC] mt-4 max-w-[500px] leading-relaxed">
               Here, faith is renewed, forgiveness is granted, and souls draw closer to Allah.
             </p>
+            <Link href="/umrah-packages">
             <button
               className="mt-6 px-6 py-3 rounded-xl font-semibold bg-[#FCF6EC] text-[#4a4a4a] shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300"
             >
               Explore Packages
             </button>
+            </Link>
           </div>
         </section>
         
@@ -264,7 +241,7 @@ export default function Home() {
           <div className="flex flex-col items-center mb-8">
             <div className="flex items-center justify-center mb-4">
               <span
-                className="font-horizon text-4xl md:text-5xl font-bold tracking-wider"
+                className="font-horizon text-2xl md:text-5xl font-bold tracking-wider"
                 style={{ fontFamily: "Horizon, sans-serif" }}
               >
                 PAK
@@ -286,20 +263,21 @@ export default function Home() {
                   />
                 </svg>
               <span
-                className="font-horizon text-4xl md:text-5xl font-bold tracking-wider"
+                className="font-horizon text-2xl md:text-5xl font-bold tracking-wider"
                 style={{ fontFamily: "Horizon, sans-serif" }}
               >
-                KSI
+                KSA
               </span>
             </div>
           </div>
           {/* Main promotional text */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-8 leading-tight">
-            Don&apos;t Miss the 5% Discount if you<br />
-            Book before 30 October
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-medium mb-8 leading-tight">
+            Don&apos;t Miss the 5% Discount if you
+            Book <br />before 30 October
           </h2>
 
           {/* Book Now Button */}
+          <Link href="/umrah-packages" >
           <button className="relative flex items-center justify-between border-2 border-white text-white font-bold text-lg rounded-full px-6 py-2 mx-auto group overflow-hidden">
             <span className="relative z-10 flex items-center w-full">
               <span className="pr-12">BOOK NOW</span>
@@ -308,52 +286,14 @@ export default function Home() {
               </span>
             </span>
           </button>
+          </Link>
         </div>
       </div>
     </section>
 
     {/* -----------------------------------------------NewsLetter Section----------------------------------------------- */}
 
-      <section className="w-full bg-[#FCF6EC] py-16 text-center">
-        <div className="max-w-3xl mx-auto">
-          {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Get Our Newsletter
-          </h2>
-          <p className="text-lg text-foreground mb-10">
-            Receive fresh Packages straight in your inbox. Join now and never miss a thing.
-          </p>
-
-          {/* Email Form */}
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const emailInput = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
-              if (/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput)) {
-                alert("Subscribed successfully with: " + emailInput);
-              } else {
-                alert("Please enter a valid Gmail address (e.g., example@gmail.com)");
-              }
-            }}
-            className="flex items-center bg-white rounded-none max-w-2xl mx-auto px-4"
-            style={{ boxShadow: "0 8px 20px -4px rgba(0,0,0,0.15)" }}
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="Type your Email Address"
-              required
-              className="flex-1 px-6 py-8 text-gray-600 placeholder-gray-400 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className=" button-name cursor-pointer"
-            >
-              Send Now
-            </button>
-          </form>
-        </div>
-      </section>
+      <Newsletter />
       {/* Footer Section */}
       <Footer />
     </div>

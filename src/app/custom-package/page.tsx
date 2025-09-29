@@ -218,7 +218,7 @@ export default function CustomPackagePage() {
 
       {/* ✅ Form Section */}
       <div id="form-section" className="flex justify-center items-center py-10 radial-background">
-        <div className="bg-white w-[95%] sm:w-[800px] md:w-[1000px] lg:w-[1138px] max-h-[90vh] rounded-2xl shadow-lg p-6 sm:p-10 border border-[#ad562826] overflow-y-auto">
+        <div className="bg-white/65 w-[95%] sm:w-[800px] md:w-[1000px] lg:w-[1138px] max-h-[90vh] rounded-2xl shadow-lg p-6 sm:p-10 border border-[#ad562826] overflow-y-auto">
           {/* Progress Tracker */}
           <div className="relative flex justify-between items-center mb-8">
             <div className="absolute top-[15px] left-0 w-full h-[6px] bg-[#f1e7de] rounded-full"></div>
@@ -362,8 +362,39 @@ export default function CustomPackagePage() {
                     className="w-full p-3 border rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-[#AD5628]"
                   />
                   {dateError && <p className="text-red-500 text-sm">{dateError}</p>}
-                  <label className="block mb-2 font-semibold">Number of Travelers*</label>
-                  <input type="number" name="travelers" min="1" placeholder="Total travelers" required onChange={validateStep} className="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#AD5628]" />
+                  <label className="block mb-2 font-semibold">Number of Travellers*</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                      {/* Adults */}
+                      <input
+                        type="number"
+                        name="adults"
+                        min="0"
+                        placeholder="Adults"
+                        required
+                        onChange={validateStep}
+                        className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#AD5628]"
+                      />
+
+                      {/* Children */}
+                      <input
+                        type="number"
+                        name="children"
+                        min="0"
+                        placeholder="Child"
+                        onChange={validateStep}
+                        className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#AD5628]"
+                      />
+
+                      {/* Infants */}
+                      <input
+                        type="number"
+                        name="infants"
+                        min="0"
+                        placeholder="Infants"
+                        onChange={validateStep}
+                        className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#AD5628]"
+                      />
+                    </div>
 
                   <label className="block mb-2 font-semibold">Preferred Hotel Category*</label>
                   <select name="hotel_category" required onChange={validateStep} className="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#AD5628]">

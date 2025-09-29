@@ -1,8 +1,9 @@
-import { Instagram, Facebook, Twitter } from 'lucide-react';
 import { FaTiktok, FaInstagram, FaFacebookF } from "react-icons/fa";
-
+import { SquareArrowOutUpRight } from "lucide-react";
+import { useState } from "react";
 
 const Footer = () => {
+  const [showIcon, setShowIcon] = useState(false);
   return (
     <footer className="bg-gradient-to-r from-primary to-primary text-accent">
       <div className="container mx-auto px-4 py-12">
@@ -41,10 +42,11 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4 text-accent">Quick Links</h3>
             <div className="space-y-2 text-sm">
-              <p className="hover:text-accent cursor-pointer transition-colors">Home</p>
+              <p className="hover:text-accent cursor-pointer transition-colors"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >Home</p>
               <p className="hover:text-accent cursor-pointer transition-colors">About Us</p>
-              <p className="hover:text-accent cursor-pointer transition-colors">Privacy Policy / Terms</p>
-              <p className="hover:text-accent cursor-pointer transition-colors">& Conditions</p>
+              <a href="https://wa.me/923215745745"><p className="hover:text-accent cursor-pointer transition-colors">Contact us</p></a>
             </div>
           </div>
 
@@ -63,22 +65,51 @@ const Footer = () => {
 
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-accent">
-            <p>Copyright © 2025 - All Rights are Reserved by Qafila-e-Miqat Travel and Tours | Terms and Condition | Privacy and Policy</p>
-            <p className="mt-1">Designed & Developed by Creavox Media</p>
-          </div>
+           <div className="text-sm text-accent">
+      <p>
+          Copyright © 2025 - All Rights are Reserved by Qafila-e-Miqat Travel and Tours |{" "}
+          <a
+            href="/terms-and-conditions"
+            className="hover:underline hover:text-accent transition-colors"
+          >
+            Terms and Conditions
+          </a>{" "}
+          |{" "}
+          <a
+            href="/privacy-policy"
+            className="hover:underline hover:text-accent transition-colors"
+          >
+            Privacy Policy
+          </a>
+        </p>
+
+      <p className="mt-1">
+        Designed and Developed by{" "}
+        <a
+          href="https://wa.me/923215745745"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 underline hover:text-accent transition-colors"
+          onMouseEnter={() => setShowIcon(true)}
+          onMouseLeave={() => setShowIcon(false)}
+        >
+          Creavox Media
+          {showIcon && <SquareArrowOutUpRight size={16} />}
+        </a>
+      </p>
+    </div>
           
           {/* Social Media Icons */}
           <div className="flex items-center gap-3">
             {/* Instagram */}
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/qafilaemiqat/" target="_blank" rel="noopener noreferrer">
                 <div className="bg-primary p-2 rounded-full hover:bg-white/20 transition-colors cursor-pointer backdrop-blur-sm">
                 <FaInstagram size={20} className="text-accent" />
                 </div>
             </a>
 
             {/* Facebook */}
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/qafilaemiqat/" target="_blank" rel="noopener noreferrer">
                 <div className="bg-primary p-2 rounded-full hover:bg-white/20 transition-colors cursor-pointer backdrop-blur-sm">
                 <FaFacebookF size={20} className="text-accent" />
                 </div>
