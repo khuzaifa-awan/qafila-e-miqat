@@ -5,33 +5,49 @@ import { Input } from './ui/input';
 import AnnouncementBar from './ui/announcementBar';
 import Image from "next/image";
 
+interface HeaderProps {
+  onSearch?: (query: string) => void;
+  searchQuery?: string;
+}
 
-export function Header() {
+export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(externalSearchQuery || '');
 
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Packages', href: './umrah-packages' },
+    { name: 'Request for Custom Package', href: './custom-package' },
     { name: 'FAQs', href: '#faqs' }
   ];
 
+  const handleSearch = () => {
+    if (onSearch) {
+      onSearch(searchQuery);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
-    
-    <header className="sticky top-0 z-50 w-full  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <AnnouncementBar className=" "/>
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <AnnouncementBar className="" />
       <div className="container mx-auto px-4">
         {/* Top bar with contact info */}
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Image
-                      src="/images/logo.svg"
-                      alt="Qafila-e-Miqat Travel and Tours"
-                      width={60}
-                      height={90}
-                      priority
-                      className={`w-12 h-16 sm:w-12 sm:h-16`}
-                    />
+            src="/images/logo.svg"
+            alt="Qafila-e-Miqat Travel and Tours"
+            width={60}
+            height={90}
+            priority
+            className={`w-12 h-16 sm:w-12 sm:h-16`}
+          />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -56,9 +72,12 @@ export function Header() {
                 className="pl-10 w-64"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
               />
             </div>
-            <Button size="sm" className="!text-accent">Search</Button>
+            <Button size="sm" className="!text-accent" onClick={handleSearch}>
+              Search
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -91,8 +110,11 @@ export function Header() {
                   placeholder="Search packages..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
                 />
-                <Button size="sm" className="!text-accent">Search</Button>
+                <Button size="sm" className="!text-accent" onClick={handleSearch}>
+                  Search
+                </Button>
               </div>
             </nav>
           </div>

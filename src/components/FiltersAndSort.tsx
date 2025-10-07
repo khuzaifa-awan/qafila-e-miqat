@@ -33,7 +33,7 @@ export function FiltersAndSort({
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [priceRange, setPriceRange] = useState<[number, number]>(activeFilters.budget);
 
-  const durationOptions = ['7 Days', '10 Days', '14 Days', '21 Days', '30 Days'];
+  const durationOptions = ['7 days', '10 days', '14 days', '21 days', '30 days'];
   const starOptions = [3, 4, 5];
   const monthOptions = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -51,6 +51,7 @@ export function FiltersAndSort({
 
   const handleFilterUpdate = (filterType: keyof FilterOptions, value: any) => {
     const newFilters = { ...activeFilters, [filterType]: value };
+    console.log('Updated Filters:', newFilters);
     onFilterChange(newFilters);
   };
 
@@ -173,6 +174,7 @@ export function FiltersAndSort({
                   <div key={duration} className="flex items-center space-x-2">
                     <Checkbox
                       id={`duration-${duration}`}
+                      className='!text-accent border-foreground'
                       checked={activeFilters.duration.includes(duration)}
                       onCheckedChange={(checked) => 
                         handleArrayFilter('duration', duration, checked as boolean)
@@ -222,6 +224,7 @@ export function FiltersAndSort({
                   <div key={stars} className="flex items-center space-x-2">
                     <Checkbox
                       id={`stars-${stars}`}
+                      className='!text-accent border-foreground'
                       checked={activeFilters.stars.includes(stars)}
                       onCheckedChange={(checked) => 
                         handleStarFilter(stars, checked as boolean)
@@ -248,6 +251,7 @@ export function FiltersAndSort({
                   <div key={month} className="flex items-center space-x-2">
                     <Checkbox
                       id={`month-${month}`}
+                      className='!text-accent border-foreground'
                       checked={activeFilters.month.includes(month)}
                       onCheckedChange={(checked) => 
                         handleArrayFilter('month', month, checked as boolean)

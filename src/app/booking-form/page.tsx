@@ -1242,7 +1242,8 @@ function PackageDetails({ packageId }: { packageId: string | null }) {
 
             <div className="flex items-center gap-2 text-sm">
               <MapPin className="w-4 h-4 text-[#AD5628]" />
-              <span><strong>Hotel:</strong> {packageData.hotel}</span>
+              <span><strong>Makkah Hotel:</strong> {packageData.hotelMAK}</span>
+              <span><strong>Madinah Hotel:</strong> {packageData.hotelMAD}</span>
             </div>
 
             <div className="flex items-center gap-2 text-sm">
@@ -1495,28 +1496,80 @@ function BookingFormContent() {
   };
 
   // Handle submit
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    // Convert to E.164 format before storing
-    const parsedPhone = phoneNumber ? parsePhoneNumber(phoneNumber) : null;
-    const formattedPhone = parsedPhone ? parsedPhone.number : phoneNumber;
+  // Convert phone into E.164 format before storing
+  const parsedPhone = phoneNumber ? parsePhoneNumber(phoneNumber) : null;
+  const formattedPhone = parsedPhone ? parsedPhone.number : phoneNumber;
 
-    // Include package information in submission
-    const submissionData = {
-      ...formData,
-      phone: formattedPhone,
-      companionNames: formData.companionNames.filter(name => name.trim()),
-      selectedPackageId: packageId,
-      selectedPackage: packageId ? getPackageById(packageId) : null,
-    };
-
-    console.log("Submitted Data:", submissionData);
-
-    setCurrentStep(totalSteps - 1);
-    setTimeout(() => setSubmitted(true), 500);
-    router.push("/thank-you?from=booking-form");
+  // Include package info in submission
+  const submissionData = {
+    fromPakistan: formData.fromPakistan,
+    firstname: formData.firstname,
+    lastname: formData.lastname,
+    email: formData.email,
+    phoneNumber: formattedPhone,
+    gender: formData.gender,
+    age: formData.age,
+    medicalInfo: formData.medicalInfo,
+    city: formData.city,
+    travelType: formData.travelType,
+    companionNames: formData.companionNames.filter(name => name.trim()),
+    paymentMethod: formData.paymentMethod,
+    packageName: packageId ? getPackageById(packageId)?.name : "N/A",
+    tierName: packageId ? getPackageById(packageId)?.tierName : "N/A",
+    groupName: packageId ? getPackageById(packageId)?.groupName : "N/A",
+    packageDuration: packageId ? getPackageById(packageId)?.duration : "N/A",
+    originalPrice: packageId ? getPackageById(packageId)?.price : "N/A",
+    discountedPrice: packageId ? getPackageById(packageId)?.discountedPrice : "N/A",
+    terms: formData.terms,
   };
+
+  try {
+    const res = await fetch("/api/submit-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "ReadyMadePackage",  // 👈 tells API to use ReadyMadePackage tab
+        data: submissionData,
+      }),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      console.log("✅ Booking form submitted:", result);
+      setCurrentStep(totalSteps - 1);
+      setTimeout(() => setSubmitted(true), 500);
+      router.push("/thank-you?from=booking-form");
+    } else {
+      console.error("❌ Submission failed:", result.error);
+      alert("Something went wrong while submitting. Please try again.");
+    }
+  } catch (error) {
+    console.error("❌ API error:", error);
+    alert("Server error while submitting. Please try again.");
+  }
+
+
+  const emailRes = await fetch("/api/send-email-booking", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(submissionData),
+});
+
+    const emailResult = await emailRes.json();
+
+    if (!emailResult.success) {
+      console.error("❌ Email failed:", emailResult.error);
+      alert("Form saved but email notification failed.");
+    } else {
+      console.log("✅ Emails sent:", emailResult);
+    }
+
+};
+
 
   useEffect(() => {
     validateStep();
@@ -1703,7 +1756,7 @@ function BookingFormContent() {
                   {/* Medical Info */}
                   <label className="block mb-2 font-semibold">
                     Do you have any medical conditions or medications we should be aware of?{" "}
-                    <span className="font-normal">(This helps us ensure your comfort and safety.)</span>
+                    <span className="font-normal">(This helps us ensure your comfort and safety)</span>
                   </label>
                   <textarea
                     name="medicalInfo"
@@ -1870,9 +1923,19 @@ function BookingFormContent() {
                             <p className="text-lg text-[#AD5628] font-semibold">{packageData.tierName} - {packageData.groupName}</p>
                             <p className="text-gray-600">Package Duration: {packageData.duration}</p>
                             <div className="text-2xl font-bold text-[#AD5628]">
-                              <span className="text-sm text-gray-500 line-through">PKR {packageData.price}</span>
-                              <br />
-                              PKR {packageData.discountedPrice}
+                              {packageData.price && packageData.price > packageData.discountedPrice ? (
+                                <>
+                                  <span className="text-sm text-gray-500 line-through">
+                                    PKR {packageData.price.toLocaleString()}
+                                  </span>
+                                  <br />
+                                  PKR {packageData.discountedPrice.toLocaleString()}
+                                </>
+                              ) : (
+                                <span>
+                                  PKR {packageData.discountedPrice.toLocaleString()}
+                                </span>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -1900,7 +1963,7 @@ function BookingFormContent() {
                       onChange={handleInputChange}
                       required
                     />
-                    I confirm I have read and agree to the Terms and Conditions
+                    I have read and agree to the<a href="/terms-and-conditions" className="underline">Terms and Conditions</a>
                   </label>
 
                   <div className="flex gap-3">

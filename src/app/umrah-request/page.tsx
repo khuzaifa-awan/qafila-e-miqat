@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleCheckBig, Plane } from "lucide-react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { parsePhoneNumber } from "react-phone-number-input";
 import { HeaderL } from "@/components/HeaderL";
 import Link from "next/link";
 
@@ -90,13 +91,45 @@ export default function TravelInquiryForm() {
     "5 Star",
   ];
 
-  const onSubmit = (data: TravelFormData) => {
-    console.log("Form submitted:", data);
-    setSubmitted(true);
-    
-    // Here you would typically send the data to your API
-    // Example: await fetch('/api/travel-inquiry', { method: 'POST', body: JSON.stringify(data) })
-  };
+  const onSubmit = async (data: TravelFormData) => {
+  try {
+    // ✅ Convert phone into E.164 format if possible
+    const parsedPhone = data.phoneNumber ? parsePhoneNumber(data.phoneNumber) : null;
+    const formattedPhone = parsedPhone ? parsedPhone.number : data.phoneNumber;
+
+    const submissionData = {
+      name: data.name, // ✅ fixed (was data.fullName)
+      phoneNumber: formattedPhone,
+      preferredMonth: data.preferredMonth,
+      groupSize: data.groupSize,
+      budgetRange: data.budgetRange,
+      hotelStar: data.hotelStar,
+    };
+
+    const res = await fetch("/api/submit-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "UmrahLeads", // ✅ must match your Google Sheet tab
+        data: submissionData,
+      }),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      console.log("✅ Umrah request form submitted:", result);
+      setSubmitted(true);
+    } else {
+      console.error("❌ Submission failed:", result.error);
+      alert("Something went wrong while submitting. Please try again.");
+    }
+  } catch (error) {
+    console.error("❌ API error:", error);
+    alert("Server error while submitting. Please try again.");
+  }
+};
+
 
   const handlePhoneChange = (value: string | undefined) => {
     const phoneValue = value || "";

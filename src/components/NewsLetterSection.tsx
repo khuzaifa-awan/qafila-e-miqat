@@ -20,21 +20,40 @@ export default function Newsletter({
   className = ""
 }: NewsletterProps) {
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const emailInput = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
-    
-    if (onSubmit) {
-      onSubmit(emailInput);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const emailInput = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
+
+  if (!emailValidation.test(emailInput)) {
+    alert("Please enter a valid Gmail address (e.g., example@gmail.com)");
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/submit-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "NewsLetterSubscribers", // 👈 goes to NewsLetterSubscribers tab
+        data: { email: emailInput },
+      }),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      console.log("✅ Newsletter subscription saved:", result);
+      alert("Subscribed successfully with: " + emailInput);
     } else {
-      // Default behavior
-      if (emailValidation.test(emailInput)) {
-        alert("Subscribed successfully with: " + emailInput);
-      } else {
-        alert("Please enter a valid Gmail address (e.g., example@gmail.com)");
-      }
+      console.error("❌ Submission failed:", result.error);
+      alert("Something went wrong. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("❌ API error:", error);
+    alert("Server error while subscribing. Please try again.");
+  }
+};
+
 
   return (
     <section className={`w-full bg-[var(--accent)] py-16 text-center ${className}`}>

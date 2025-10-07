@@ -7,12 +7,23 @@ export function FAQSection() {
     {
       id: 'faq-1',
       question: 'What documents are required for Umrah visa in 2025?',
-      answer: 'For Pakistani citizens, you need: Valid passport (6+ months validity), completed visa application form, recent passport-sized photographs, confirmed flight booking, hotel reservation confirmation, vaccination certificates (including COVID-19 if required), and proof of relationship for Mahram (for female pilgrims). We assist with the complete visa process.'
+      answer: `To apply for an Umrah visa in 2025, you will need the following: 
+      - A valid passport (at least 6 months validity with 2 blank pages) 
+      - Recent passport-size photographs (white background)
+      - CNIC copy for adults / B-Form for children 
+      - Valid vaccination certificate (Meningitis ACWY is compulsory)
+      - Confirmed round-trip flight ticket
+      - Confirmed hotel bookings in Makkah and Madinah (through licensed hotels / Nusuk platform)
+      - Filled visa application form and biometric verification (if required) 
+      - Proof of relationship for women traveling with Mahram (marriage certificate, birth certificate, or family registration certificate)  
+      - Visa fee payment receipt  
+
+      Tip: Make sure all documents are valid and that names match exactly across passport, CNIC, and bookings to avoid delays.`
     },
     {
       id: 'faq-2',
       question: 'Can I customize my Umrah package?',
-      answer: 'Yes! We offer flexible customization options. You can modify hotel categories, extend your stay, add extra cities like Istanbul or Dubai, choose flight preferences, and add special services like private transport or guided tours. Our team will provide a customized quote based on your preferences.'
+      answer: 'Yes! We offer flexible customization options. You can modify hotel categories, choose flight preferences, and add special services like private transport or guided tours. Our team will provide a customized quote based on your preferences.'
     },
     {
       id: 'faq-3',
@@ -31,18 +42,18 @@ export function FAQSection() {
     },
     {
       id: 'faq-6',
-      question: 'Is group travel mandatory or can I travel independently?',
-      answer: 'We offer both options! Group travel includes guided tours, group activities, and shared transportation - great for first-time pilgrims. Independent packages give you more flexibility while still providing support services. You can also join partial group activities even with independent packages.'
+      question: 'How much will Umrah cost?',
+      answer: 'The cost of Umrah depends on your travel dates, hotel preference, and transport choice. Economy packages usually start at a budget-friendly range and include 3-star hotels with shared transport. Standard packages are moderately priced, featuring 4-star hotels closer to Haram with more comfort. Luxury packages are on the higher end, offering 5-star hotels nearest to Haram along with private transport. Prices depend on airline availability and the season, especially during Ramadan when costs are generally higher. For an exact quote, please share your travel dates and requirements with us.'
     },
     {
       id: 'faq-7',
       question: 'What safety measures are in place for solo female travelers?',
-      answer: 'We prioritize safety for all pilgrims, especially solo female travelers. Our packages include: Female group coordinators, safe accommodation arrangements, proper Mahram documentation assistance, 24/7 emergency support, group supervision during religious activities, and connections with other female pilgrims for companionship.'
+      answer: 'We prioritize safety for all pilgrims, especially solo female travelers. According to Islamic teachings, a woman must be accompanied by her Mahram when traveling for Umrah or Hajj. This guidance is for her honor, comfort, and protection. At Qafila-e-Miqat Travel, we strictly follow this principle and only arrange Umrah packages for sisters who are traveling with their Mahram. This ensures safety, peace of mind, and alignment with the Sunnah.'
     },
     {
       id: 'faq-8',
       question: 'How do I make payments and what is your cancellation policy?',
-      answer: 'Payment plan: 30% advance booking, 50% one month before travel, 20% final payment 15 days before departure. Cancellation policy: 100% refund if cancelled 60+ days before travel, 50% refund for 30-60 days, 25% refund for 15-30 days. No refund within 15 days of travel unless due to visa rejection or medical emergency.'
+      answer: 'A small advance (usually 30–40%) is required, with the balance payable before departure. If you need to cancel your booking, please inform us as early as possible. Flight tickets, visa fees, and hotel bookings are subject to airline and supplier rules, which may be non-refundable. In addition, a small amount of service charges will be deducted from the refundable amount. Any remaining balance after deductions will be returned to you. We handle cancellations fairly, with honesty, and in line with Islamic values of trust (Amanah)'
     }
   ];
 
@@ -72,7 +83,7 @@ export function FAQSection() {
                 <AccordionTrigger className="text-left hover:no-underline py-6">
                   <span className="font-semibold pr-4">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
+                <AccordionContent className="text-muted-foreground pb-6 leading-relaxed whitespace-pre-line">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -87,16 +98,16 @@ export function FAQSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                  href="https://wa.me/923000000000"
+                  href="https://wa.me/923455631563"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-[#AD5628] text-[#AD5628] font-medium px-5 py-3 rounded-md shadow-md hover:bg-[#AD5628] hover:text-white transition"
+                  className="flex items-center gap-2 border border-[#AD5628] text-[#AD5628] font-medium px-5 py-3 rounded-md shadow-md hover:bg-[#AD5628] hover:text-accent transition"
                   >
                 <FaWhatsapp className="w-5 h-5 text-[#25D366]" />
                     Chat with us
               </a>
-              <button className="border border-border px-6 py-3 rounded-lg font-semibold hover:bg-muted transition-colors">
-                Call Now: +92-42-8765432
+              <button className="border border-border px-6 py-3 rounded-lg font-semibold hover:text-accent! hover:bg-[#AD5628]  transition-colors">
+                <a href="tel:03455631563">Call Now: 0345-5631563</a>
               </button>
             </div>
           </div>

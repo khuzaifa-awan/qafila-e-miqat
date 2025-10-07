@@ -199,8 +199,11 @@ export interface Package {
   stars: number;
   image: string;
   flightType: 'Direct';
-  departure: string;
-  hotel: string;
+  departureCity: string;   // New
+  makkahDistance: string;   // NEW
+  madinahDistance: string;  // NEW
+  hotelMAK: string;
+  hotelMAD: string;
   location: string;
   features: Perk[];
   badge?: string;
@@ -293,11 +296,11 @@ export function PackageCard({
               </div>
               <div
                 className={`flex items-center gap-1 ${
-                  pkg.availability === "Not Available"
+                  pkg.availability === "Sold Out"
                     ? "text-red-500"
                     : pkg.availability === "Available"
                     ? "text-green-500"
-                    : "text-foreground"
+                    : "text-amber-500"
                 }`}
               >
                 <Clock className="w-4 h-4" />
@@ -309,18 +312,31 @@ export function PackageCard({
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm">
               <Plane className="w-4 h-4 text-primary" />
-              <span>{pkg.flightType} Flight from {pkg.departure}</span>
+              <span>{pkg.flightType} Flight from {pkg.departureCity}</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span>{pkg.hotel}, {pkg.location}</span>
+
+            <div className="flex flex-col text-sm">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span>{pkg.hotelMAK} (MAK)</span>
+              </div>
+              <span className="ml-6 text-xs text-gray-500">Distance: {pkg.makkahDistance}</span>
+            </div>
+
+            <div className="flex flex-col text-sm">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span>{pkg.hotelMAD} (MAD)</span>
+              </div>
+              <span className="ml-6 text-xs text-gray-500">Distance: {pkg.madinahDistance}</span>
             </div>
           </div>
+
 
           <div className="space-y-2">
             <p className="text-sm font-medium">Package Includes:</p>
             <div className="grid grid-cols-2 gap-1">
-              {pkg.features.slice(0, 8).map((feature, index) => (
+              {pkg.features.slice(0, 6).map((feature, index) => (
                 <div key={index} className="flex items-center gap-1 text-xs text-muted-foreground">
                   {renderIcon(feature.icon, { className: "w-3 h-3 text-primary flex-shrink-0" })}
                   <span className="truncate">{feature.text}</span>
@@ -332,14 +348,20 @@ export function PackageCard({
           <div className="border-t pt-4">
             <div className="flex items-center justify-between">
               <div>
-                {pkg.originalPrice && (
-                  <p className="text-sm text-muted-foreground line-through">
-                    PKR {pkg.originalPrice}
-                  </p>
-                )}
-                <p className="text-2xl font-bold text-primary">
-                  PKR {pkg.price}
-                </p>
+                {pkg.originalPrice && pkg.originalPrice > pkg.price ? (
+                    <>
+                      <p className="text-sm text-gray-500 line-through">
+                        PKR {pkg.originalPrice.toLocaleString()}
+                      </p>
+                      <p className="text-xl font-bold text-primary">
+                        PKR {pkg.price.toLocaleString()}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-xl font-bold text-primary">
+                      PKR {pkg.price.toLocaleString()}
+                    </p>
+                  )}
                 <p className="text-xs text-muted-foreground">Per person</p>
               </div>
               <div className="bg-[#F7E9D9] text-[#AD5628] text-center text-sm font-semibold px-6 py-1 rounded-full">

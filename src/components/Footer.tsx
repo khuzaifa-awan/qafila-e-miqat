@@ -23,18 +23,41 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4 text-accent">Contact Information</h3>
             <div className="space-y-2 text-sm">
-              <p>0300-0000000</p>
-              <p>booking@qafilaemiqat.com</p>
+              <p>
+                <a href="https://wa.me/03455631563">
+                  0345-5631563
+                </a>
+              </p>
+              <p>
+                <p>
+                  <a href="mailto:qafilaemiqat@gmail.com" >
+                    qafilaemiqat@gmail.com
+                  </a>
+                </p>
+              </p>
             </div>
           </div>
+          {/* href="mailto:qafilaemiqat@gmail.com" */}
 
           {/* Package Umrah */}
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4 text-accent">Package Umrah</h3>
             <div className="space-y-2 text-sm">
-              <p>Premimum Umrah</p>
-              <p>Standard Umrah</p>
-              <p>Economy Umrah</p>
+              <p>
+                <a href="umrah-packages?tier=premium">
+                  Premimum Umrah
+                </a>
+              </p>
+              <p>
+                <a href="umrah-packages?tier=standard">
+                  Standard Umrah
+                </a>
+              </p>
+              <p>
+                <a href="umrah-packages?tier=economy">
+                  Economy Umrah
+                </a>
+              </p>
             </div>
           </div>
 
@@ -45,7 +68,6 @@ const Footer = () => {
               <p className="hover:text-accent cursor-pointer transition-colors"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >Home</p>
-              <p className="hover:text-accent cursor-pointer transition-colors">About Us</p>
               <a href="https://wa.me/923215745745"><p className="hover:text-accent cursor-pointer transition-colors">Contact us</p></a>
             </div>
           </div>
@@ -76,7 +98,7 @@ const Footer = () => {
           </a>{" "}
           |{" "}
           <a
-            href="/privacy-policy"
+            href="/privacy-and-policy"
             className="hover:underline hover:text-accent transition-colors"
           >
             Privacy Policy

@@ -9,12 +9,18 @@ import HeroCanvas from '@/components/HeroCanvas';
 import FacilitiesSection from "@/components/FacilitiesSection";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Menu, X } from "lucide-react";
 import Newsletter from "@/components/NewsLetterSection";
 
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navItems = [
+    { name: 'Home', href: '/' },
+    { name: 'Packages', href: './umrah-packages' },
+    { name: 'Request for Custom Package', href: './custom-package' },
+  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -34,28 +40,62 @@ export default function Home() {
         </div>
 
         {/* Header */}
-        <header className="flex justify-between items-center mb-10 px-4 sm:px-6 lg:px-5 mt-0 relative z-10">
-          {/* Logo Zoom Animation */}
-          <Image
-            src="/images/logo.svg"
-            alt="Qafila-e-Miqat Travel and Tours"
-            width={60}
-            height={90}
-            priority
-            className={`${isVisible ? "animate-zoom" : "opacity-0"}w-12 h-16 sm:w-16 sm:h-24`}
-          />
-
-          {/* Book Now Button Zoom Animation */}
-          <Link href="/umrah-packages">
-            <button
-              style={{ backgroundColor: "#AD5628", color: "#FCF6EC" }}
-              className="px-4 py-2 sm:px-8 sm:py-3.5 rounded-md font-medium text-sm sm:text-base 
-                        transition-all duration-300 transform hover:scale-105 hover:opacity-90 hover:shadow-lg"
-            >
-              Book Now
-            </button>
-          </Link>
-        </header>
+        <header className="top-0 z-50 w-full !bg-transparent">
+              <div className="container mx-auto px-4 !bg-transparent">
+                {/* Top bar with contact info */}
+                <div className="flex items-center justify-between pb-4 !bg-transparent">
+                  {/* Logo */}
+                  <Image
+                              src="/images/logo.svg"
+                              alt="Qafila-e-Miqat Travel and Tours"
+                              width={60}
+                              height={90}
+                              priority
+                              className={`w-12 h-16 sm:w-12 sm:h-16`}
+                            />
+        
+                  {/* Desktop Navigation */}
+                  <nav className="hidden md:flex items-center space-x-8">
+                    {navItems.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="nav-link"
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </nav>
+        
+        
+                  {/* Mobile menu button */}
+                  <button
+                    className="md:hidden"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  >
+                    {isMenuOpen ? <X className="w-6 h-6 !text-accent" /> : <Menu className="w-6 h-6 !text-accent" />}
+                  </button>
+                </div>
+        
+                {/* Mobile Navigation */}
+                {isMenuOpen && (
+                  <div className="md:hidden py-4 border-t">
+                    <nav className="flex flex-col space-y-4 ">
+                      {navItems.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="nav-link !text-accent"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                )}
+              </div>
+            </header>
 
         {/* Hero Content */}
         <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 pt-4 lg:pt-0 pb-8 relative">

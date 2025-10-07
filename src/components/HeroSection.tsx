@@ -67,7 +67,7 @@ export function HeroSection({ referralSource = 'direct' }: HeroSectionProps) {
         </h2>
         
         <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
-          Flights, Visa, Hotels & Transport Included – Trusted by thousands of pilgrims from Pakistan.
+          Flights, Visa, Hotels & Transport Included – Everything You Need for a Peaceful Journey.
         </p>
 
         {/* CTA Buttons */}
