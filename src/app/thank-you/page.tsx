@@ -55,7 +55,7 @@ export default function ThankYouPage() {
               qafilaemiqat@gmail.com
             </a>
             <a
-              href="https://wa.me/923000000000"
+              href="https://wa.me/923455631563"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 border border-[#AD5628] text-[#AD5628] font-medium px-5 py-3 rounded-md shadow-md hover:bg-[#AD5628] hover:text-white transition"
@@ -68,7 +68,7 @@ export default function ThankYouPage() {
       </div>
 
       {/* ✅ Bottom Dua */}
-      <div className="absolute bottom-2 w-full text-center">
+      <div className="absolute bottom-2 w-full mb-4 px-2 pb-4 text-center">
         <p className="text-foreground text-sm sm:text-base italic">
           <b> Allahumma Taqabbal</b> - May Allah accept your intention and grant you a blessed Umrah journey!
         </p>

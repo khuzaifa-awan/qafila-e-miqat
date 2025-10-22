@@ -1,4 +1,6 @@
 "use client";
+import { useState, useEffect } from "react";
+
 
 interface NewsletterProps {
   title?: string;
@@ -11,17 +13,24 @@ interface NewsletterProps {
 }
 
 export default function Newsletter({
+  
   title = "Get Our Newsletter",
   description = "Receive fresh Packages straight in your inbox. Join now and never miss a thing.",
-  placeholder = "Type your Email Address",
+  placeholder = "Enter email address",
   buttonText = "Send Now",
   onSubmit,
   emailValidation = /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
   className = ""
-}: NewsletterProps) {
+}: NewsletterProps) 
+{
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
+    setIsSubmitting(true); // ⭐ Start loading
+
   const emailInput = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
 
   if (!emailValidation.test(emailInput)) {
@@ -51,6 +60,8 @@ export default function Newsletter({
   } catch (error) {
     console.error("❌ API error:", error);
     alert("Server error while subscribing. Please try again.");
+  }finally {
+    setIsSubmitting(false); // ⭐ Stop loading
   }
 };
 
@@ -79,12 +90,55 @@ export default function Newsletter({
             required
             className="flex-1 px-6 py-8 text-gray-600 placeholder-gray-400 focus:outline-none"
           />
-          <button
+          {/* <button
             type="submit"
             className="button-name cursor-pointer"
           >
             {buttonText}
+          </button> */}
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`button-name cursor-pointer flex-1  rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
+              !isSubmitting
+                ? "bg-[#AD5628] !text-accent hover:bg-[#933f1b]"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
+          >
+            {isSubmitting ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 
+                      0 0 5.373 0 12h4zm2 5.291A7.962 
+                      7.962 0 014 12H0c0 3.042 1.135 
+                      5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Submitting...
+              </>
+            ) : (
+              buttonText
+            )}
           </button>
+
+          
         </form>
       </div>
     </section>

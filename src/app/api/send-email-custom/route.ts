@@ -70,7 +70,7 @@ export async function POST(req: Request) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #AD5628;">Dear ${fullname},</h2>
           
-          <p>Thank you for choosing <strong>Qafila-e-Miqat</strong>. We have received your custom Umrah package request and our team will contact you shortly at <strong>${phoneNumber}</strong>.</p>
+          <p>Thank you for choosing <strong>Qafila-e-Miqat</strong>. We've received your custom Umrah package request and our team will contact you shortly at <strong>${phoneNumber}</strong>.</p>
           
           <h3>Your Submitted Details:</h3>
           <ul style="line-height: 1.8;">

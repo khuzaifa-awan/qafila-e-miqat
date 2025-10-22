@@ -8,15 +8,20 @@ export function FAQSection() {
       id: 'faq-1',
       question: 'What documents are required for Umrah visa in 2025?',
       answer: `To apply for an Umrah visa in 2025, you will need the following: 
-      - A valid passport (at least 6 months validity with 2 blank pages) 
-      - Recent passport-size photographs (white background)
-      - CNIC copy for adults / B-Form for children 
-      - Valid vaccination certificate (Meningitis ACWY is compulsory)
-      - Confirmed round-trip flight ticket
-      - Confirmed hotel bookings in Makkah and Madinah (through licensed hotels / Nusuk platform)
-      - Filled visa application form and biometric verification (if required) 
-      - Proof of relationship for women traveling with Mahram (marriage certificate, birth certificate, or family registration certificate)  
-      - Visa fee payment receipt  
+      • A valid passport at least 6 months validity from the day you departure with 2 blank pages 
+      • Recent passport-size photographs
+      • CNIC copy for adults / B-Form for children 
+      • Every pilgrim (aged 2+) must have valid vaccination certificates.
+          - Meningococcal ACYW-135 vaccine: at least 10 days before arrival.
+          - Polio vaccine: mandatory for travelers from Pakistan, Afghanistan, and high-risk African countries — at least 4 weeks before travel.
+      • Confirmed round-trip flight ticket
+      • Confirmed hotel bookings in Makkah and Madinah (through licensed hotels / Nusuk platform)
+      • Filled visa application form and biometric verification (if required) 
+      • Proof of relationship for women traveling with Mahram (marriage certificate, birth certificate, or family registration certificate)  
+      • Visa fee payment receipt  
+      • Any additional documents as specified by the Saudi consulate
+      
+      "We handle the entire visa application process for you to ensure all documents are correct and submitted on time. We recommend applying at least 2-3 weeks before your intended travel date to allow for processing time."
 
       Tip: Make sure all documents are valid and that names match exactly across passport, CNIC, and bookings to avoid delays.`
     },
@@ -33,7 +38,7 @@ export function FAQSection() {
     {
       id: 'faq-4',
       question: 'How far are the hotels from Haram Sharif?',
-      answer: 'Our hotel selection varies by package tier: 5-star packages include hotels within 100-300 meters walking distance from Haram. 4-star packages are typically 300-800 meters away. 3-star packages may require 10-15 minutes walking or shuttle service. All hotels are carefully selected for comfort and proximity.'
+      answer: 'Our hotel selection varies by package tier: 5-star packages include hotels within 100-150 meters walking distance from Haram. 4-star packages are typically 150-200 meters away. 3-star packages may require 10-15 minutes walking or shuttle service. All hotels are carefully selected for comfort and proximity.'
     },
     {
       id: 'faq-5',
@@ -48,7 +53,7 @@ export function FAQSection() {
     {
       id: 'faq-7',
       question: 'What safety measures are in place for solo female travelers?',
-      answer: 'We prioritize safety for all pilgrims, especially solo female travelers. According to Islamic teachings, a woman must be accompanied by her Mahram when traveling for Umrah or Hajj. This guidance is for her honor, comfort, and protection. At Qafila-e-Miqat Travel, we strictly follow this principle and only arrange Umrah packages for sisters who are traveling with their Mahram. This ensures safety, peace of mind, and alignment with the Sunnah.'
+      answer: 'We prioritize safety for all pilgrims, especially solo female travelers. According to Hadith, a woman should NOT travel without a mahram (Sahih al-Bukhari 1862). This guidance is for her honor, comfort, and protection. At Qafila-e-Miqat Travel, we strictly follow this principle and only arrange Umrah packages for sisters who are traveling with their Mahram. This ensures safety, peace of mind, and alignment with the Sunnah.'
     },
     {
       id: 'faq-8',
@@ -101,7 +106,7 @@ export function FAQSection() {
                   href="https://wa.me/923455631563"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-[#AD5628] text-[#AD5628] font-medium px-5 py-3 rounded-md shadow-md hover:bg-[#AD5628] hover:text-accent transition"
+                  className="flex items-center items-center justify-center gap-2 border  border-[#AD5628] text-[#AD5628] font-medium px-5 py-3 rounded-md shadow-md hover:bg-[#AD5628] hover:text-accent transition"
                   >
                 <FaWhatsapp className="w-5 h-5 text-[#25D366]" />
                     Chat with us

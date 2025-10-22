@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
+// import type { Metadata } from "next";
 import { useSearchParams } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
@@ -14,12 +15,59 @@ import { X } from 'lucide-react';
 // Import your tier/group packages data
 import { packages as tierPackages, getPackagesByTier, getPackagesByGroup } from '@/data/packages';
 import FacilitiesSection from '@/components/FacilitiesSection';
+// export const metadata: Metadata = {
+//   title: "Best & Affordable Umrah Packages 2025 from Pakistan | Qafila-e-Miqat",
+//   description:
+//     "Book cheap and best Umrah packages 2025 from Pakistan. Qafila-e-Miqat offers complete Umrah services including visa, flights, hotels, and transport. Available from Karachi, Lahore, Islamabad, Multan, Sialkot, Faisalabad, and Attock. Group, private, VIP & family Umrah packages.",
+//   keywords: [
+//     "cheap umrah packages",
+//     "best umrah packages Pakistan",
+//     "umrah packages 2025 Pakistan",
+//     "umrah packages Karachi",
+//     "umrah packages Lahore",
+//     "umrah packages Islamabad",
+//     "umrah packages Multan",
+//     "umrah packages Sialkot",
+//     "umrah packages Faisalabad",
+//     "umrah packages Attock",
+//     "VIP umrah packages Pakistan",
+//     "VIP umrah packages Lahore",
+//     "group umrah packages Pakistan",
+//     "private umrah packages Pakistan",
+//     "umrah package for family 2025",
+//     "how to book umrah from Pakistan",
+//     "ramadan umrah package 2025"
+//   ],
+//   openGraph: {
+//     title: "Qafila-e-Miqat Travel | Best & Affordable Umrah Packages 2025",
+//     description:
+//       "Choose from our cheap, VIP, group, and private Umrah packages 2025 from Pakistan. Services include visa, flights, hotels & transport. Available from Karachi, Lahore, Islamabad, Multan, Sialkot, Faisalabad, and Attock.",
+//     url: "https://qafilaemiqat.com/umrah-packages",
+//     siteName: "Qafila-e-Miqat Travel",
+//     images: [
+//       {
+//         url: "/images/umrah-banner.jpg",
+//         width: 1200,
+//         height: 630,
+//         alt: "Best Umrah Packages 2025 from Pakistan"
+//       }
+//     ],
+//     locale: "en_PK",
+//     type: "website"
+//   },
+//   twitter: {
+//     card: "summary_large_image",
+//     title: "Best & Affordable Umrah Packages 2025 from Pakistan",
+//     description:
+//       "Book group, family, VIP & private Umrah packages with Qafila-e-Miqat. Visa, flights, hotels & transport included. Trusted Umrah travel agency in Pakistan.",
+//     images: ["/images/umrah-banner.jpg"]
+//   }
+// };
 
 export default function App() {
   const searchParams = useSearchParams();
   const [selectedPackages, setSelectedPackages] = useState<string[]>([]);
   const [filteredPackages, setFilteredPackages] = useState<Package[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
   const [activeFilters, setActiveFilters] = useState<FilterOptions>({
     duration: [],
     budget: [150000, 500000],
@@ -79,24 +127,6 @@ export default function App() {
     // Start with packages filtered by URL parameters
     let filtered = getFilteredPackagesBySelection();
 
-    if (searchQuery.trim()) {
-    const query = searchQuery.toLowerCase();
-    filtered = filtered.filter(pkg => {
-      // Search in title, location, hotel names, and price
-      const searchableText = [
-        pkg.title,
-        pkg.location,
-        pkg.hotelMAK,
-        pkg.hotelMAD,
-        pkg.duration,
-        pkg.price,
-        pkg.stars.toString(),
-        pkg.badge
-      ].join(' ').toLowerCase();
-      
-      return searchableText.includes(query);
-    });
-  }
 
     // Apply additional filters
     console.log(activeFilters.duration)
@@ -123,9 +153,6 @@ export default function App() {
     setFilteredPackages(filtered);
   }, [activeFilters, selectedTier, selectedType]);
 
-  const handleSearch = (query: string) => {
-  setSearchQuery(query);
-};
 
   const handleBookNow = (packageId: string) => {
     const pkg = allPackages.find(p => p.id === packageId);
@@ -175,7 +202,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background font-sans">
-      <Header onSearch={handleSearch} searchQuery={searchQuery} />
+      <Header />
       
       <HeroSection referralSource="direct" />
 

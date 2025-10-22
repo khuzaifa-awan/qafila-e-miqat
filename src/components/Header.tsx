@@ -46,7 +46,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
             width={60}
             height={90}
             priority
-            className={`w-12 h-16 sm:w-12 sm:h-16`}
+            className={`w-12 h-16 sm:w-22 sm:h-18`}
           />
 
           {/* Desktop Navigation */}
@@ -63,7 +63,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
           </nav>
 
           {/* Search Bar */}
-          <div className="hidden lg:flex items-center gap-2">
+          {/* <div className="hidden lg:flex items-center gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
@@ -78,7 +78,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
             <Button size="sm" className="!text-accent" onClick={handleSearch}>
               Search
             </Button>
-          </div>
+          </div> */}
 
           {/* Mobile menu button */}
           <button
@@ -97,14 +97,14 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="nav-link"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
               {/* Mobile search */}
-              <div className="flex gap-2 pt-4 border-t">
+              {/* <div className="flex gap-2 pt-4 border-t">
                 <Input
                   type="text"
                   placeholder="Search packages..."
@@ -115,7 +115,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
                 <Button size="sm" className="!text-accent" onClick={handleSearch}>
                   Search
                 </Button>
-              </div>
+              </div> */}
             </nav>
           </div>
         )}

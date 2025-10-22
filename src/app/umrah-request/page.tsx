@@ -63,6 +63,8 @@ type TravelFormData = z.infer<typeof travelFormSchema>;
 export default function TravelInquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const {
     register,
@@ -75,15 +77,14 @@ export default function TravelInquiryForm() {
   });
 
   const months = [
-    "January (2026)", "February (2026)", "March (2026)", "April (2026)", "May (2026)", "June (2026)",
-    "July (2026)", "August (2026)", "September (2026)", "October", "November", "December"
+    "January (2026)","February (2026) ", "October", "November", "December"
   ];
 
   const budgetRanges = [
-    "PKR 150,000 - 250,000",
-    "PKR 250,000 - 350,000",
-    "PKR 350,000 - 550,000",
-    "Above 500,000"
+    "PKR 250,000 - 300,000",
+    "PKR 300,000 - 350,000",
+    "PKR 350,000 - 450,000",
+    "Above 450,000"
   ];
   const hotelStar = [
     "3 Star",
@@ -92,6 +93,9 @@ export default function TravelInquiryForm() {
   ];
 
   const onSubmit = async (data: TravelFormData) => {
+
+      setIsSubmitting(true); // ⭐ Start loading
+
   try {
     // ✅ Convert phone into E.164 format if possible
     const parsedPhone = data.phoneNumber ? parsePhoneNumber(data.phoneNumber) : null;
@@ -127,6 +131,8 @@ export default function TravelInquiryForm() {
   } catch (error) {
     console.error("❌ API error:", error);
     alert("Server error while submitting. Please try again.");
+  }finally {
+    setIsSubmitting(false); // ⭐ Stop loading
   }
 };
 
@@ -309,6 +315,18 @@ export default function TravelInquiryForm() {
                 * All fields are required. Your details help us design the perfect Umrah package for you.
               </p>
             </div>
+            {isSubmitting && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <div className="bg-white rounded-lg p-8 flex flex-col items-center gap-4">
+                  <svg className="animate-spin h-12 w-12 text-[#AD5628]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p className="text-lg font-semibold text-gray-700">Submitting your request...</p>
+                  <p className="text-sm text-gray-500">Please wait, this may take a few seconds</p>
+                </div>
+              </div>
+            )}
           </form>
         </div>
       </div>

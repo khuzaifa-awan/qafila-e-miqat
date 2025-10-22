@@ -79,7 +79,7 @@ export async function POST(req: Request) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #AD5628;">Dear ${fullName || "Pilgrim"},</h2>
           
-          <p>Thank you for choosing <strong>Qafila-e-Miqat</strong>. We have received your booking request and our team will contact you shortly at <strong>${phoneNumber}</strong>.</p>
+          <p>Thank you for choosing <strong>Qafila-e-Miqat</strong>. We've received your booking request and our team will contact you shortly at <strong>${phoneNumber}</strong>.</p>
           
           <h3>Your Booking Summary:</h3>
           <div style="background-color: #f9f5f0; padding: 15px; border-radius: 8px; border-left: 4px solid #AD5628;">
@@ -107,7 +107,7 @@ export async function POST(req: Request) {
           <p style="margin-top: 30px;">Best regards,<br><strong>Qafila-e-Miqat Team</strong></p>
           
           <hr style="margin: 30px 0; border: none; border-top: 1px solid #e0e0e0;">
-          <p style="font-size: 12px; color: #666;">If you have any questions, feel free to contact us at ${process.env.ADMIN_EMAIL}</p>
+          <p style="font-size: 12px; color: #666;">If you have any questions, feel free to contact us at ${process.env.ADMIN_EMAIL} or +92 345-5631563</p>
         </div>
       `,
     });

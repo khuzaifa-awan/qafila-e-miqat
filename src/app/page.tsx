@@ -46,21 +46,21 @@ export default function Home() {
                 <div className="flex items-center justify-between pb-4 !bg-transparent">
                   {/* Logo */}
                   <Image
-                              src="/images/logo.svg"
-                              alt="Qafila-e-Miqat Travel and Tours"
-                              width={60}
-                              height={90}
-                              priority
-                              className={`w-12 h-16 sm:w-12 sm:h-16`}
-                            />
-        
+                    src="/images/logo.svg"
+                    alt="Qafila-e-Miqat Travel and Tours"
+                    width={80}
+                    height={120}
+                    priority
+                    className="w-16 h-20 sm:w-22 sm:h-20"
+                  />
+                    
                   {/* Desktop Navigation */}
                   <nav className="hidden md:flex items-center space-x-8">
                     {navItems.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
-                        className="nav-link"
+                        className="text-foreground hover:text-primary transition-colors"
                       >
                         {item.name}
                       </a>
@@ -105,7 +105,7 @@ export default function Home() {
 
             {/* Heading Slide-Up */}
             <h1
-              className={`text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold mb-6 max-md:text-[#FCF6EC] text-text leading-tight ${
+              className={`text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold mb-6 max-md:text-[#FCF6EC] text-text leading-tight [text-shadow:_1px_1px_2px_rgba(0,0,0,0.2)] ${
                 isVisible ? "animate-slideUp" : "opacity-0"
               }`}
             >
@@ -114,17 +114,17 @@ export default function Home() {
 
             {/* Paragraph Slide-Up */}
             <p
-              className={`text-base sm:text-xl mb-8 max-md:text-[#FCF6EC] text-text font-normal ${
+              className={`text-base sm:text-xl mb-8 max-md:text-[#FCF6EC] text-text font-normal [text-shadow:_1px_1px_2px_rgba(0,0,0,0.2)] sm:[text-shadow:none] ${
                 isVisible ? "animate-slideUp-delay" : "opacity-0"
               }`}
             >
               Perform Umrah with complete peace of mind. We handle your visa,
               flights, hotels, foods, and transport, so you can focus on your
-              worship.
+              Ibādah.
             </p>
 
             {/* Get Free Consultation Button Zoom Animation */}
-          <Link href="/booking-form">
+          <Link href="https://wa.me/03455631563" target="_blank" rel="noopener noreferrer">
             <button
               style={{ backgroundColor: "#AD5628", color: "#FCF6EC" }}
               className={`w-full md:w-auto px-8 py-3.5 rounded-md font-medium text-base 
@@ -154,12 +154,15 @@ export default function Home() {
         {/* Hadith Section */}
         <div className="w-full flex justify-center items-center px-4 sm:px-6 md:px-8 my-8 relative z-20">
           <div className="text-center max-w-7xl">
-            <p className=" pt-4 sm:pt-0 text-base sm:text-lg md:text-base font-normal text-[#444] max-md:text-[#FCF6EC] leading-relaxed">
+            <p className="pt-4 sm:pt-0 text-base sm:text-lg md:text-base font-normal text-[#444] max-md:text-[#FCF6EC] leading-relaxed [text-shadow:_1px_1px_2px_rgba(0,0,0,0.2)] ">
               The Prophet ﷺ said:
-              <span className="italic"> "Alternate between Hajj and Umrah; for those two remove 
-              poverty and sins just as the bellows removes filth from iron, gold, and silver — 
-              and there is no reward for Al-Hajj Al-Mabrur except for Paradise."</span>
+              <span className="italic">
+                "Alternate between Hajj and Umrah; for those two remove 
+                poverty and sins just as the bellows removes filth from iron, gold, and silver - 
+                and there is no reward for Al-Hajj Al-Mabrur except for Paradise."
+              </span>
             </p>
+
             <p className="font-semibold sm:font-normal text-sm text-gray-500 mt-3">
               (Jamiʿ at-Tirmidhi - 810)
             </p>
@@ -206,7 +209,7 @@ export default function Home() {
 
 
         {/* Mecca Section */}
-        <section className="relative h-[275vh] lg:h-[200vh] flex items-center px-8 md:px-12">
+        <section className="relative h-[200vh] lg:h-[200vh] flex items-center px-8 md:px-12">
           <div className=" sticky top-1/2 -translate-y-1/2 flex flex-col items-start z-20 pt-20 md:pt-0">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FCF6EC] max-w-[600px] leading-tight">
               The Heart of Faith, The House of Allah   
