@@ -140,7 +140,7 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/qafilaemiqat/"
+              href="https://www.instagram.com/umrahwithqafilaemiqat/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -151,7 +151,7 @@ const Footer = () => {
 
             {/* Facebook */}
             <a
-              href="https://www.facebook.com/qafilaemiqat/"
+              href="https://www.facebook.com/umrahwithqafilaemiqat/"
               target="_blank"
               rel="noopener noreferrer"
             >
