@@ -45,20 +45,11 @@ export function HeroSection({ referralSource = 'direct' }: HeroSectionProps) {
         ))}
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" />
-        
-        {/* Islamic Pattern Overlay */}
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }}
-        />
       </div>
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-6 drop-shadow-lg">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mt-6 mb-6 drop-shadow-lg">
           Affordable & Luxury Umrah Packages from Pakistan (2025)
         </h1>
         
@@ -66,7 +57,7 @@ export function HeroSection({ referralSource = 'direct' }: HeroSectionProps) {
           {getHeadline()}
         </h2>
         
-        <p className="text-lg md:text-xl text-accent/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
+        <p className="text-sm md:text-xl text-accent/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
           Flights, Visa, Hotels & Transport Included – Everything You Need for a Peaceful Journey.
         </p>
 
@@ -79,27 +70,11 @@ export function HeroSection({ referralSource = 'direct' }: HeroSectionProps) {
             View All Packages
           </button>
           <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => window.open('https://wa.me/923455631563', '_blank', 'noopener,noreferrer')}
             className="bg-accent/90 !text-foreground px-8 py-4 rounded-lg font-semibold hover:bg-accent transition-all transform hover:scale-105 shadow-lg"
           >
             Get Free Consultation
           </button>
-        </div>
-
-        {/* Trust Indicators */}
-        <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-accent/70">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>Fast Visa Processing</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>Worry Free Journey</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>Licensed Tour Operator</span>
-          </div>
         </div>
       </div>
     </section>

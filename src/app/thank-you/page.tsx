@@ -26,9 +26,9 @@ export default function ThankYouPage() {
         </div>
 
         {/* ✅ Text Content (Below illustration on mobile, Left on desktop) */}
-        <div className="order-2 lg:order-1 w-full lg:w-1/2 space-y-1 sm:space-y-4 lg:space-y-6 text-center lg:text-left">
-          <h2 className="text-foreground text-normal space-y-1 sm:text-xl font-bold">
-            Alhumdulillah! We’ve got your details
+        <div className="order-2 lg:order-1 w-full lg:w-1/2 space-y-0 sm:space-y-4 lg:space-y-6 text-center lg:text-left">
+          <h2 className="text-foreground text-normal sm:text-xl font-bold">
+            Alhumdulillah! We&apos;ve got your details
           </h2>
 
           <h1 className="flex items-center justify-center lg:justify-start gap-3 text-xl sm:text-4xl lg:text-5xl font-extrabold text-foreground drop-shadow">
@@ -36,8 +36,8 @@ export default function ThankYouPage() {
             <span className="drop-shadow">Thank You for Booking!</span>
           </h1>
 
-          <p className="text-foreground text-left text-base sm:text-lg leading-relaxed">
-            We’re truly honored to be part of your spiritual journey!
+          <p className="text-foreground text-left pt-1 text-sm sm:text-lg leading-relaxed">
+            We&apos;re truly honored to be part of your spiritual journey!
             <br />
             One of our Umrah experts will reach out shortly to finalize your package and guide you through the next steps. JazakAllahu Khair for choosing Qafila-e-Miqat Travel & Tours.
             <br />
@@ -68,9 +68,9 @@ export default function ThankYouPage() {
       </div>
 
       {/* ✅ Bottom Dua */}
-      <div className="absolute bottom-2 w-full mb-4 px-2 pb-4 text-center">
+      <div className="bottom-2 w-full mb-4 px-2 py-4 text-center">
         <p className="text-foreground text-sm sm:text-base italic">
-          <b> Allahumma Taqabbal</b> - May Allah accept your intention and grant you a blessed Umrah journey!
+           May Allah accept your intention and grant you a blessed Umrah journey!
         </p>
       </div>
     </div>

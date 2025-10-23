@@ -33,7 +33,7 @@ const Footer = () => {
             </h3>
             <div className="space-y-2 text-sm">
               <p>
-                <a href="https://wa.me/03455631563" target="_blank" rel="noopener noreferrer">0345-5631563</a>
+                <a href="https://wa.me/923455631563" target="_blank" rel="noopener noreferrer">0345-5631563</a>
               </p>
               <p>
                 <p>
@@ -76,7 +76,7 @@ const Footer = () => {
               >
                 Home
               </p>
-              <a href="https://wa.me/03455631563" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/923455631563" target="_blank" rel="noopener noreferrer">
                 <p className="hover:text-accent cursor-pointer transition-colors">
                   Contact us
                 </p>

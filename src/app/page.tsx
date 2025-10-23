@@ -85,7 +85,7 @@ export default function Home() {
                         <a
                           key={item.name}
                           href={item.href}
-                          className="nav-link !text-accent"
+                          className="hover:text-primary transition-colors !text-accent"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {item.name}
@@ -124,7 +124,7 @@ export default function Home() {
             </p>
 
             {/* Get Free Consultation Button Zoom Animation */}
-          <Link href="https://wa.me/03455631563" target="_blank" rel="noopener noreferrer">
+          <Link href="https://wa.me/923455631563" target="_blank" rel="noopener noreferrer">
             <button
               style={{ backgroundColor: "#AD5628", color: "#FCF6EC" }}
               className={`w-full md:w-auto px-8 py-3.5 rounded-md font-medium text-base 

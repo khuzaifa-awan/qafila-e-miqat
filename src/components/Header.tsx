@@ -38,7 +38,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
       <AnnouncementBar className="" />
       <div className="container mx-auto px-4">
         {/* Top bar with contact info */}
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between ">
           {/* Logo */}
           <Image
             src="/images/logo.svg"
@@ -97,7 +97,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
                 <a
                   key={item.name}
                   href={item.href}
-                  className="nav-link"
+                  className="text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
