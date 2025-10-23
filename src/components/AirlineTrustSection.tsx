@@ -86,13 +86,16 @@ export default function AirlineTrustSection() {
     container.scrollLeft = startScrollLeftRef.current - walk;
   };
 
-  const endDrag = (e?: React.PointerEvent) => {
+  // ✅ FIX: Properly type the parameter instead of using 'any'
+  const endDrag = (e?: React.PointerEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
     if (!container) return;
     isDraggingRef.current = false;
     lastTsRef.current = null; // reset time delta so auto-scroll doesn't jump
     try {
-      container.releasePointerCapture?.((e as any)?.pointerId);
+      if (e?.pointerId !== undefined) {
+        container.releasePointerCapture?.(e.pointerId);
+      }
     } catch {
       // ignore
     }

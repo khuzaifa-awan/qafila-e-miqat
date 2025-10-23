@@ -1160,7 +1160,7 @@ export default function CustomPackagePage() {
                     className="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#AD5628]"
                   />
 
-                  <label className="block mb-3 font-semibold">What's most important for you in this Umrah trip?*</label>
+                  <label className="block mb-3 font-semibold">What&apos;s most important for you in this Umrah trip?*</label>
                   <div className="flex flex-wrap gap-4 mb-2">
                     {[
                       { value: "near_haram", label: "Staying close to Haram" },

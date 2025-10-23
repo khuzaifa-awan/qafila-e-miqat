@@ -24,7 +24,7 @@ export function HeaderL() {
                       width={60}
                       height={90}
                       priority
-                      className={`w-12 h-16 sm:w-12 sm:h-16`}
+                      className={`w-12 h-16 sm:w-22 sm:h-18`}
                     />
 
           {/* Desktop Navigation */}

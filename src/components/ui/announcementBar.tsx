@@ -49,8 +49,9 @@ interface AnnouncementBarProps {
 
 export default function AnnouncementBar({ 
   announcements = [
-    "✨ October Packages Are Live 🕋",
-    "⏳ Limited seats for October Umrah. Reserve today!",
+    "✨ November Packages Are Live 🕋",
+    "✨ December Packages Are Live 🕋",
+    "⏳ Limited seats for November Umrah. Reserve today!",
     "🎉 Special Group Discounts Available",
     "🌟 VIP Services Available for Premium Experience"
   ],

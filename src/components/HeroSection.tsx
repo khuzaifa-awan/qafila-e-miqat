@@ -58,15 +58,15 @@ export function HeroSection({ referralSource = 'direct' }: HeroSectionProps) {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-6 drop-shadow-lg">
           Affordable & Luxury Umrah Packages from Pakistan (2025)
         </h1>
         
-        <h2 className="text-2xl md:text-3xl lg:text-4xl text-white/90 mb-6 drop-shadow-md">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl text-accent/90 mb-6 drop-shadow-md">
           {getHeadline()}
         </h2>
         
-        <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
+        <p className="text-lg md:text-xl text-accent/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
           Flights, Visa, Hotels & Transport Included – Everything You Need for a Peaceful Journey.
         </p>
 
@@ -80,14 +80,14 @@ export function HeroSection({ referralSource = 'direct' }: HeroSectionProps) {
           </button>
           <button 
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-white/90 !text-foreground px-8 py-4 rounded-lg font-semibold hover:bg-white transition-all transform hover:scale-105 shadow-lg"
+            className="bg-accent/90 !text-foreground px-8 py-4 rounded-lg font-semibold hover:bg-accent transition-all transform hover:scale-105 shadow-lg"
           >
             Get Free Consultation
           </button>
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/70">
+        <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-accent/70">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
             <span>Fast Visa Processing</span>

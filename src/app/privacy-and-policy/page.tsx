@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
             <li className="flex items-start">
               <div className="w-2 h-2 bg-[#AD5628] rounded-full mr-3 mt-2 flex-shrink-0"></div>
               <div>
-                <strong>Children's Data:</strong> Information about children under 18 (e.g., name, age, passport/B-Form details) is only collected when necessary for Umrah bookings and always provided by parents or guardians. This data is never used for marketing.
+                <strong>Children&apos;s Data:</strong> Information about children under 18 (e.g., name, age, passport/B-Form details) is only collected when necessary for Umrah bookings and always provided by parents or guardians. This data is never used for marketing.
               </div>
             </li>
           </ul>
@@ -172,7 +172,7 @@ export default function PrivacyPolicy() {
             </li>
             <li className="flex items-start">
               <div className="w-2 h-2 bg-[#AD5628] rounded-full mr-3 mt-2 flex-shrink-0"></div>
-              <div>You may opt out at any time by clicking the "unsubscribe" link or contacting us directly.</div>
+              <div>You may opt out at any time by clicking the &quot;unsubscribe&quot; link or contacting us directly.</div>
             </li>
             <li className="flex items-start">
               <div className="w-2 h-2 bg-[#AD5628] rounded-full mr-3 mt-2 flex-shrink-0"></div>
@@ -310,7 +310,7 @@ export default function PrivacyPolicy() {
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-12">
         <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8">
           <p className="text-gray-700 leading-relaxed mb-4">
-            Qafila-e-Miqat Travel and Tours ("Company," "we," "our," or "us") values your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and safeguard the personal information you provide when using our services, including our website and booking forms.
+            Qafila-e-Miqat Travel and Tours (&quot;Company,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) values your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and safeguard the personal information you provide when using our services, including our website and booking forms.
           </p>
           <p className="text-gray-700 leading-relaxed">
             By using our services, you agree to the practices described in this Privacy Policy.
@@ -375,7 +375,7 @@ export default function PrivacyPolicy() {
         {/* Footer Note */}
         <div className="mt-8 text-center text-gray-600 text-sm">
           <p>
-            Last updated: October 6th, 2025 | © 2025 Qafila-e-Miqat Travel and Tours. All rights reserved.
+            Last updated: October 6th, 2025 | &copy; 2025 Qafila-e-Miqat Travel and Tours. All rights reserved.
           </p>
         </div>
       </div>

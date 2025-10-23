@@ -153,7 +153,7 @@ export default function TermsAndConditions() {
             <strong>7.1:</strong> Clients are required to conduct themselves with respect, dignity, and adherence to Islamic principles throughout their journey.
           </p>
           <p>
-            <strong>7.2:</strong> All travelers must comply with the laws and regulations of the Kingdom of Saudi Arabia. The Company shall not be responsible for any legal consequences arising from a Client's violation of local laws.
+            <strong>7.2:</strong> All travelers must comply with the laws and regulations of the Kingdom of Saudi Arabia. The Company shall not be responsible for any legal consequences arising from a Client&apos;s violation of local laws.
           </p>
         </>
       ),
@@ -165,7 +165,7 @@ export default function TermsAndConditions() {
       content: (
         <>
           <p className="mb-3">
-            <strong>8.1:</strong> It is the Client's responsibility to ensure they are medically fit to undertake the journey. Travelers with pre-existing conditions should consult a physician before booking.
+            <strong>8.1:</strong> It is the Client&apos;s responsibility to ensure they are medically fit to undertake the journey. Travelers with pre-existing conditions should consult a physician before booking.
           </p>
           <p>
             <strong>8.2:</strong> The Company is not liable for any medical emergencies, expenses, or inability to perform rituals due to health issues.
@@ -229,7 +229,7 @@ export default function TermsAndConditions() {
         <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8">
           <h2 className="text-2xl font-bold text-[#444] mb-4">Company: Qafila-e-Miqat Travel and Tours</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            These Terms and Conditions ("Terms") constitute a binding agreement between you ("Client," "Passenger," or "Traveler") and Qafila-e-Miqat Travel and Tours ("the Company," "we," "us," or "our").
+            These Terms and Conditions (&quot;Terms&quot;) constitute a binding agreement between you (&quot;Client,&quot; &quot;Passenger,&quot; or &quot;Traveler&quot;) and Qafila-e-Miqat Travel and Tours (&quot;the Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
           </p>
           <p className="text-gray-700 leading-relaxed">
             By booking any Umrah package or related services with us, you acknowledge that you have read, understood, and agreed to be bound by these Terms.
@@ -306,7 +306,7 @@ export default function TermsAndConditions() {
         {/* Footer Note */}
         <div className="mt-8 text-center text-gray-600 text-sm">
           <p>
-            Last updated: October 6th, 2025 | © 2025 Qafila-e-Miqat Travel and Tours. All rights reserved.
+            Last updated: October 6th, 2025 | &copy; 2025 Qafila-e-Miqat Travel and Tours. All rights reserved.
           </p>
         </div>
       </div>

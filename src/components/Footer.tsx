@@ -22,7 +22,7 @@ const Footer = () => {
             />
 
             <p className="text-sm pt-2 text-accent">
-              Pakistan's Most Reliable Umrah Partner
+              Pakistan&apos;s Most Reliable Umrah Partner
             </p>
           </div>
 
@@ -89,9 +89,9 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-accent">
               Office Place
             </h3>
-            <div className="text-sm">
-              <p>Malik Plaza Office#4,</p>
-              <p>Attock, Pakistan</p>
+            <div className="text-sm px-2">
+              <li>Near Jamia Masjid Noori, Mohallah Aminabad - Attock, Pakistan</li>
+              <li className="pt-2">New office location coming soon!</li>
             </div>
           </div>
         </div>

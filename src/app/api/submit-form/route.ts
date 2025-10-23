@@ -2,15 +2,76 @@ import { google } from "googleapis";
 import path from "path";
 import { NextResponse } from "next/server";
 
+// Define types for form data
+interface ReadyMadePackageData {
+  fromPakistan: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phoneNumber: string;
+  gender: string;
+  age: string | number;
+  medicalInfo: string;
+  city: string;
+  travelType: string;
+  companionNames?: string[];
+  paymentMethod: string;
+  packageName: string;
+  tierName: string;
+  groupName: string;
+  packageDuration: string | number;
+  originalPrice: string | number;
+  discountedPrice: string | number;
+  terms: boolean;
+}
+
+interface CustomPackageData {
+  transport_choice: string;
+  special_requests: string;
+  priority: string;
+  travel_date: string;
+  arrival_date: string;
+  adults: string | number;
+  children: string | number;
+  infants: string | number;
+  hotel_category: string;
+  room_preference: string;
+  fullname: string;
+  phoneNumber: string;
+  email: string;
+  departure_city: string;
+}
+
+interface UmrahLeadsData {
+  name: string;
+  phoneNumber: string;
+  preferredMonth: string;
+  groupSize: string | number;
+  budgetRange: string;
+  hotelStar: string | number;
+}
+
+interface NewsLetterSubscribersData {
+  email: string;
+}
+
+type FormData =
+  | ReadyMadePackageData
+  | CustomPackageData
+  | UmrahLeadsData
+  | NewsLetterSubscribersData;
+
+interface RequestBody {
+  formType: string;
+  data: FormData;
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     console.log("📩 Incoming request body:", body);
 
-    const { formType, data } = body as {
-      formType: string;
-      data: Record<string, any>;
-    };
+    const { formType, data } = body as RequestBody;
 
     // Load Google Auth
     const auth = new google.auth.GoogleAuth({
@@ -25,78 +86,82 @@ export async function POST(req: Request) {
       timeZone: "Asia/Karachi",
     });
 
-    let values: any[] = [];
+    let values: (string | number)[][] = [];
     let tabName = "";
 
     if (formType === "ReadyMadePackage") {
       tabName = "ReadyMadePackage";
+      const packageData = data as ReadyMadePackageData;
       values = [
         [
           timestamp, // Timestamp
-          data.fromPakistan, // From Pakistan
-          data.firstname, // First Name
-          data.lastname, // Last Name
-          data.email, // Email
-          data.phoneNumber, // Contact Number
-          data.gender, // Gender
-          data.age, // Age
-          data.medicalInfo, // Medical Info
-          data.city, // City
-          data.travelType, // Travel Type
-          (data.companionNames || []).join(", "), // Companion Names
-          data.paymentMethod, // Payment Method
-          data.packageName, // Package Name
-          data.tierName, // Tier Name
-          data.groupName, // Group Name
-          data.packageDuration, // Duration
-          data.originalPrice, // Original Price ⭐
-          data.discountedPrice, // Discounted Price ⭐
-          data.terms ? "Yes" : "No",
+          packageData.fromPakistan, // From Pakistan
+          packageData.firstname, // First Name
+          packageData.lastname, // Last Name
+          packageData.email, // Email
+          packageData.phoneNumber, // Contact Number
+          packageData.gender, // Gender
+          packageData.age, // Age
+          packageData.medicalInfo, // Medical Info
+          packageData.city, // City
+          packageData.travelType, // Travel Type
+          (packageData.companionNames || []).join(", "), // Companion Names
+          packageData.paymentMethod, // Payment Method
+          packageData.packageName, // Package Name
+          packageData.tierName, // Tier Name
+          packageData.groupName, // Group Name
+          packageData.packageDuration, // Duration
+          packageData.originalPrice, // Original Price ⭐
+          packageData.discountedPrice, // Discounted Price ⭐
+          packageData.terms ? "Yes" : "No",
         ],
       ];
     }
 
     if (formType === "CustomPackage") {
       tabName = "CustomPackage";
+      const customData = data as CustomPackageData;
       values = [
         [
           timestamp,
-          data.transport_choice,
-          data.special_requests,
-          data.priority,
-          data.travel_date,
-          data.arrival_date,
-          data.adults,
-          data.children,
-          data.infants,
-          data.hotel_category,
-          data.room_preference,
-          data.fullname,
-          data.phoneNumber,
-          data.email,
-          data.departure_city,
+          customData.transport_choice,
+          customData.special_requests,
+          customData.priority,
+          customData.travel_date,
+          customData.arrival_date,
+          customData.adults,
+          customData.children,
+          customData.infants,
+          customData.hotel_category,
+          customData.room_preference,
+          customData.fullname,
+          customData.phoneNumber,
+          customData.email,
+          customData.departure_city,
         ],
       ];
     }
 
     if (formType === "UmrahLeads") {
       tabName = "UmrahLeads";
+      const leadsData = data as UmrahLeadsData;
       values = [
         [
           timestamp,
-          data.name,
-          data.phoneNumber,
-          data.preferredMonth,
-          data.groupSize,
-          data.budgetRange,
-          data.hotelStar,
+          leadsData.name,
+          leadsData.phoneNumber,
+          leadsData.preferredMonth,
+          leadsData.groupSize,
+          leadsData.budgetRange,
+          leadsData.hotelStar,
         ],
       ];
     }
 
     if (formType === "NewsLetterSubscribers") {
       tabName = "NewsLetterSubscribers";
-      values = [[timestamp, data.email]];
+      const newsletterData = data as NewsLetterSubscribersData;
+      values = [[timestamp, newsletterData.email]];
     }
 
     if (!tabName) {

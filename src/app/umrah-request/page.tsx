@@ -81,6 +81,7 @@ export default function TravelInquiryForm() {
   ];
 
   const budgetRanges = [
+    "Below PKR 250,000",
     "PKR 250,000 - 300,000",
     "PKR 300,000 - 350,000",
     "PKR 350,000 - 450,000",
@@ -154,7 +155,7 @@ export default function TravelInquiryForm() {
               <CircleCheckBig size={80} className="text-green-500 mb-4" />
              <h3 className="text-2xl font-semibold text-[#AD5628] mb-6">Alhamdulillah! Your Umrah request is received.</h3>
               <p className="text-forground mb-3">JazakAllahu Khair for choosing Qafila-e-Miqat Travel & Tours.</p>
-              <p className="!text-forground mb-6">Our team will guide you step by step until your Umrah is fully arranged."</p>
+              <p className="!text-forground mb-6">Our team will guide you step by step until your Umrah is fully arranged.</p>
               <Link href="/"> 
               <button
                 style={{ backgroundColor: "#AD5628", color: "#FCF6EC" }}

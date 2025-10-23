@@ -157,9 +157,9 @@ export default function Home() {
             <p className="pt-4 sm:pt-0 text-base sm:text-lg md:text-base font-normal text-[#444] max-md:text-[#FCF6EC] leading-relaxed [text-shadow:_1px_1px_2px_rgba(0,0,0,0.2)] ">
               The Prophet ﷺ said:
               <span className="italic">
-                "Alternate between Hajj and Umrah; for those two remove 
+                &quot;Alternate between Hajj and Umrah; for those two remove 
                 poverty and sins just as the bellows removes filth from iron, gold, and silver - 
-                and there is no reward for Al-Hajj Al-Mabrur except for Paradise."
+                and there is no reward for Al-Hajj Al-Mabrur except for Paradise.&quot;
               </span>
             </p>
 
@@ -235,7 +235,7 @@ export default function Home() {
         <section className="container mx-auto px-4 py-16">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12">
-              Approved by Pakistan's Leading Authorities
+              Approved by Pakistan&apos;s Leading Authorities
             </h2>
             <div className="flex flex-row items-center justify-around gap-8 md:gap-16">
               <div className="flex items-center justify-center">

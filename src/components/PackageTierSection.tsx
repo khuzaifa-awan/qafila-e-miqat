@@ -17,6 +17,13 @@ interface Tier {
 export default function Packages() {
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+  
+  // ✅ FIX: Move all useState hooks to the top level
+  // Create state for each tier's active tab
+  const [economyActiveTab, setEconomyActiveTab] = useState("Group");
+  const [standardActiveTab, setStandardActiveTab] = useState("Group");
+  const [premiumActiveTab, setPremiumActiveTab] = useState("Solo");
+  
   const router = useRouter();
 
   const tiers: Tier[] = [
@@ -27,8 +34,8 @@ export default function Packages() {
       popular: false,
       subTypes: [
         { label: "Group", desc: "2-3 star hotels, Shared rooms, Shuttle services, Larger shared vehicles includes buses or coaches" },
-        { label: "Couple", desc: "2-3 star hotels, Private basic double room with basic amenities, Shared transport in modern vehicles, " },
-        { label: "Family", desc: "2-3 star hotels, Multi-occupancy rooms suitable for families, Private or semi private transport optional " },
+        { label: "Couple", desc: "2-3 star hotels, Private basic double room with basic amenities, Shared transport in modern vehicles" },
+        { label: "Family", desc: "2-3 star hotels, Multi-occupancy rooms suitable for families, Private or semi private transport optional" },
       ],
     },
     {
@@ -49,19 +56,30 @@ export default function Packages() {
       tagline: "Luxury & Exclusive Experience",
       popular: false,
       subTypes: [
-        { label: "Solo", desc: "5-star hotel often Haram-view, Single rooms with Premium amenities, Private air-conditioned transport " },
+        { label: "Solo", desc: "5-star hotel often Haram-view, Single rooms with Premium amenities, Private air-conditioned transport" },
         { label: "Couple", desc: "5-star hotel often Haram-view, Private double room with premium amenities, Luxurious and comfortable stays, Private cars or SUVs" },
         { label: "Family", desc: "5-star hotel often Haram-view, Family suite rooms with premium amenities. Private or VIP air-conditioned cars or SUVs" },
       ],
     },
   ];
 
+  // ✅ Helper function to get the correct state and setter for each tier
+  const getTabState = (tierId: string) => {
+    switch (tierId) {
+      case "economy":
+        return { activeTab: economyActiveTab, setActiveTab: setEconomyActiveTab };
+      case "standard":
+        return { activeTab: standardActiveTab, setActiveTab: setStandardActiveTab };
+      case "premium":
+        return { activeTab: premiumActiveTab, setActiveTab: setPremiumActiveTab };
+      default:
+        return { activeTab: economyActiveTab, setActiveTab: setEconomyActiveTab };
+    }
+  };
+
   const handleSeePackages = (tierId: string, groupLabel: string) => {
-    // Set the state for any local tracking if needed
     setSelectedTier(tierId);
     setSelectedGroup(groupLabel.toLowerCase());
-    
-    // Navigate to umrah-packages page with URL parameters
     router.push(`/umrah-packages?tier=${tierId}&type=${groupLabel.toLowerCase()}`);
   };
 
@@ -71,13 +89,14 @@ export default function Packages() {
         Choose Your Umrah Journey
       </h2>
       <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-        Whether you're traveling solo, with couple, family, or in a group, we
+        Whether you&apos;re traveling solo, with couple, family, or in a group, we
         have packages designed to make your Umrah easy and worry-free.
       </p>
 
       <div className="flex justify-center gap-6 flex-wrap py-4 my-16">
         {tiers.map((tier) => {
-          const [activeTab, setActiveTab] = useState(tier.subTypes[0].label);
+          // ✅ Get the active tab state for this specific tier
+          const { activeTab, setActiveTab } = getTabState(tier.id);
 
           const borderGradients: Record<string, string> = {
             economy: "from-[#878274] to-[#24221a]",
@@ -102,7 +121,7 @@ export default function Packages() {
                   <p className="text-sm text-gray-500">{tier.tagline}</p>
                 </div>
 
-                {/* ✅ Tab Box */}
+                {/* Tab Box */}
                 <div className="relative bg-[#eaddcf] rounded-lg flex mb-6 overflow-hidden px-1">
                   <div
                     className="absolute rounded-md bg-[#FCF6EC] shadow transition-all duration-300"
@@ -127,7 +146,7 @@ export default function Packages() {
                   ))}
                 </div>
 
-                {/* ✅ Active Content */}
+                {/* Active Content */}
                 <div className="flex flex-col flex-1">
                   {tier.subTypes.map(
                     (sub) =>

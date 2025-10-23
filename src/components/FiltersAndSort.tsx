@@ -49,7 +49,7 @@ export function FiltersAndSort({
     { value: 'newest', label: 'Newest Packages' }
   ];
 
-  const handleFilterUpdate = (filterType: keyof FilterOptions, value: any) => {
+  const handleFilterUpdate = (filterType: keyof FilterOptions, value: string[] | [number, number] | number[]) => {
     const newFilters = { ...activeFilters, [filterType]: value };
     console.log('Updated Filters:', newFilters);
     onFilterChange(newFilters);
@@ -84,13 +84,13 @@ export function FiltersAndSort({
   const clearAllFilters = () => {
     const clearedFilters: FilterOptions = {
       duration: [],
-      budget: [150000, 500000],
+      budget: [200000, 500000],
       stars: [],
       month: [],
       flightType: []
     };
     onFilterChange(clearedFilters);
-    setPriceRange([150000, 500000]);
+    setPriceRange([200000, 500000]);
   };
 
   const getActiveFilterCount = () => {
@@ -98,7 +98,7 @@ export function FiltersAndSort({
            activeFilters.stars.length + 
            activeFilters.month.length + 
            activeFilters.flightType.length +
-           (priceRange[0] !== 150000 || priceRange[1] !== 500000 ? 1 : 0);
+           (priceRange[0] !== 200000 || priceRange[1] !== 500000 ? 1 : 0);
   };
 
   return (
@@ -202,7 +202,7 @@ export function FiltersAndSort({
                     handleFilterUpdate('budget', value);
                   }}
                   max={500000}
-                  min={150000}
+                  min={200000}
                   step={10000}
                   className="w-full"
                 />

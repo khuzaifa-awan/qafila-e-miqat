@@ -1,6 +1,5 @@
 "use client"
-import { useState, useEffect } from 'react';
-// import type { Metadata } from "next";
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
@@ -11,76 +10,32 @@ import  Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/buttonP';
 import { X } from 'lucide-react';
-
-// Import your tier/group packages data
-import { packages as tierPackages, getPackagesByTier, getPackagesByGroup } from '@/data/packages';
+import { packages as tierPackages } from '@/data/packages';
 import FacilitiesSection from '@/components/FacilitiesSection';
-// export const metadata: Metadata = {
-//   title: "Best & Affordable Umrah Packages 2025 from Pakistan | Qafila-e-Miqat",
-//   description:
-//     "Book cheap and best Umrah packages 2025 from Pakistan. Qafila-e-Miqat offers complete Umrah services including visa, flights, hotels, and transport. Available from Karachi, Lahore, Islamabad, Multan, Sialkot, Faisalabad, and Attock. Group, private, VIP & family Umrah packages.",
-//   keywords: [
-//     "cheap umrah packages",
-//     "best umrah packages Pakistan",
-//     "umrah packages 2025 Pakistan",
-//     "umrah packages Karachi",
-//     "umrah packages Lahore",
-//     "umrah packages Islamabad",
-//     "umrah packages Multan",
-//     "umrah packages Sialkot",
-//     "umrah packages Faisalabad",
-//     "umrah packages Attock",
-//     "VIP umrah packages Pakistan",
-//     "VIP umrah packages Lahore",
-//     "group umrah packages Pakistan",
-//     "private umrah packages Pakistan",
-//     "umrah package for family 2025",
-//     "how to book umrah from Pakistan",
-//     "ramadan umrah package 2025"
-//   ],
-//   openGraph: {
-//     title: "Qafila-e-Miqat Travel | Best & Affordable Umrah Packages 2025",
-//     description:
-//       "Choose from our cheap, VIP, group, and private Umrah packages 2025 from Pakistan. Services include visa, flights, hotels & transport. Available from Karachi, Lahore, Islamabad, Multan, Sialkot, Faisalabad, and Attock.",
-//     url: "https://qafilaemiqat.com/umrah-packages",
-//     siteName: "Qafila-e-Miqat Travel",
-//     images: [
-//       {
-//         url: "/images/umrah-banner.jpg",
-//         width: 1200,
-//         height: 630,
-//         alt: "Best Umrah Packages 2025 from Pakistan"
-//       }
-//     ],
-//     locale: "en_PK",
-//     type: "website"
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "Best & Affordable Umrah Packages 2025 from Pakistan",
-//     description:
-//       "Book group, family, VIP & private Umrah packages with Qafila-e-Miqat. Visa, flights, hotels & transport included. Trusted Umrah travel agency in Pakistan.",
-//     images: ["/images/umrah-banner.jpg"]
-//   }
-// };
 
-export default function App() {
+// Separate component that uses useSearchParams
+function UmrahPackagesContent() {
   const searchParams = useSearchParams();
   const [selectedPackages, setSelectedPackages] = useState<string[]>([]);
   const [filteredPackages, setFilteredPackages] = useState<Package[]>([]);
   const [activeFilters, setActiveFilters] = useState<FilterOptions>({
     duration: [],
-    budget: [150000, 500000],
+    budget: [200000, 500000],
     stars: [],
     month: [],
     flightType: []
   });
 
-  // Get URL parameters
   const selectedTier = searchParams.get('tier');
   const selectedType = searchParams.get('type');
 
-  // Convert your tier-based packages to the display format
+  // ✅ Helper function to extract month from departure date
+  const extractMonthFromDate = (dateString: string): string => {
+    // dateString format: "12 October, 2025" or "23 November, 2025"
+    const parts = dateString.split(' ');
+    return parts[1].replace(',', ''); // Returns "October", "November", etc.
+  };
+
   const convertTierPackagesToDisplay = (): Package[] => {
     return tierPackages.map((pkg, index) => ({
       id: pkg.id,
@@ -94,21 +49,21 @@ export default function App() {
       departureCity: pkg.departureCity,
       hotelMAK: pkg.hotelMAK,
       hotelMAD: pkg.hotelMAD,
-      makkahDistance: pkg.makkahDistance,  // NEW
-      madinahDistance: pkg.madinahDistance,  // NEW
+      makkahDistance: pkg.makkahDistance,
+      madinahDistance: pkg.madinahDistance,
       location: pkg.routes.slice(1, -1).join(' & '),
       features: pkg.perks.map(perk => perk).slice(0, 8),
       badge: pkg.tier === 'premium' ? 'VIP Experience' : pkg.tier === 'standard' ? 'Most Popular' : 'Best Value',
       isPopular: pkg.tier === 'standard',
       availability: pkg.seatsLeft === 0 ? 'Sold Out' : pkg.seatsLeft >= 10 ? 'Available' : 'Limited',      
-      seatsLeft: pkg.seatsLeft
+      seatsLeft: pkg.seatsLeft,
+      // ✅ Add month field for easier filtering
+      departureMonth: extractMonthFromDate(pkg.departureDate)
     }));
   };
 
-  // All available packages (converted from tier format)
   const allPackages: Package[] = convertTierPackagesToDisplay();
 
-  // Filter packages based on URL parameters
   const getFilteredPackagesBySelection = () => {
     if (!selectedTier && !selectedType) {
       return allPackages;
@@ -124,23 +79,31 @@ export default function App() {
   const mostSellingPackages = allPackages.filter(pkg => pkg.isPopular || pkg.badge === 'Most Popular' || pkg.badge === 'Best Value').slice(0, 3);
 
   useEffect(() => {
-    // Start with packages filtered by URL parameters
     let filtered = getFilteredPackagesBySelection();
 
-
-    // Apply additional filters
-    console.log(activeFilters.duration)
+    // Duration filter
     if (activeFilters.duration.length > 0) {
-      console.log("Filtered: ", filtered)
       filtered = filtered.filter(pkg => activeFilters.duration.includes(pkg.duration));
     }
 
+    // Stars filter
     if (activeFilters.stars.length > 0) {
       filtered = filtered.filter(pkg => activeFilters.stars.includes(pkg.stars));
     }
 
+    // Flight type filter
     if (activeFilters.flightType.length > 0) {
       filtered = filtered.filter(pkg => activeFilters.flightType.includes(pkg.flightType));
+    }
+
+    // ✅ Month filter - NOW WORKING!
+    if (activeFilters.month.length > 0) {
+      filtered = filtered.filter(pkg => {
+        const pkgMonth = extractMonthFromDate(
+          tierPackages.find(tp => tp.id === pkg.id)?.departureDate || ''
+        );
+        return activeFilters.month.includes(pkgMonth);
+      });
     }
 
     // Budget filter
@@ -152,7 +115,6 @@ export default function App() {
 
     setFilteredPackages(filtered);
   }, [activeFilters, selectedTier, selectedType]);
-
 
   const handleBookNow = (packageId: string) => {
     const pkg = allPackages.find(p => p.id === packageId);
@@ -175,7 +137,7 @@ export default function App() {
   };
 
   const handleSortChange = (sortBy: string) => {
-    let sorted = [...filteredPackages];
+    const sorted = [...filteredPackages];
     
     switch (sortBy) {
       case 'price-low':
@@ -206,7 +168,6 @@ export default function App() {
       
       <HeroSection referralSource="direct" />
 
-      {/* Selection Summary */}
       {(selectedTier || selectedType) && (
         <div className="bg-primary/5 border-b">
           <div className="container mx-auto px-4 py-4">
@@ -234,14 +195,11 @@ export default function App() {
         </div>
       )}
 
-      {/* Comparison Bar */}
       {selectedPackages.length > 0 && (
         <div className="sticky top-35 z-40 bg-primary text-accent shadow-lg">
           <div className="container mx-auto px-4 py-3">
-            {/* Mobile Layout */}
             <div className="md:hidden">
               <div className="flex flex-col gap-3">
-                {/* Top row - counter and clear button */}
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">
                     {selectedPackages.length} selected
@@ -256,7 +214,6 @@ export default function App() {
                   </Button>
                 </div>
                 
-                {/* Middle row - badges (scrollable) */}
                 <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                   {selectedPackages.map((id) => {
                     const pkg = allPackages.find(p => p.id === id);
@@ -271,12 +228,11 @@ export default function App() {
                   })}
                 </div>
                 
-                {/* Bottom row - compare button */}
                 <Button 
                   variant="secondary" 
                   size="sm"
                   disabled={selectedPackages.length < 2}
-                  onClick={() => alert(`Compare option isn't avaliable yet. Qafila-e-Miqat Team is working on it. Please try again later.`)}
+                  onClick={() => alert(`Compare option isn't available yet. Qafila-e-Miqat Team is working on it. Please try again later.`)}
                   className="w-full border-2 border-accent bg-accent/10 hover:bg-accent/20"
                 >
                   Compare ({selectedPackages.length}) Packages Now
@@ -284,10 +240,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Tablet Layout */}
             <div className="hidden md:flex lg:hidden">
               <div className="flex flex-col gap-2 w-full">
-                {/* Top row */}
                 <div className="flex items-center justify-between">
                   <span className="font-medium">
                     {selectedPackages.length} package{selectedPackages.length > 1 ? 's' : ''} selected
@@ -297,7 +251,7 @@ export default function App() {
                       variant="secondary" 
                       size="sm"
                       disabled={selectedPackages.length < 2}
-                      onClick={() => alert(`Compare option isn't avaliable yet. Qafila-e-Miqat Team is working on it. Please try again later.`)}
+                      onClick={() => alert(`Compare option isn't available yet. Qafila-e-Miqat Team is working on it. Please try again later.`)}
                     >
                       Compare
                     </Button>
@@ -312,7 +266,6 @@ export default function App() {
                   </div>
                 </div>
                 
-                {/* Bottom row - badges */}
                 <div className="flex gap-2 flex-wrap">
                   {selectedPackages.map((id) => {
                     const pkg = allPackages.find(p => p.id === id);
@@ -329,7 +282,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Desktop Layout (original) */}
             <div className="hidden lg:flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <span className="font-medium">
@@ -354,7 +306,7 @@ export default function App() {
                   variant="secondary" 
                   size="sm"
                   disabled={selectedPackages.length < 2}
-                  onClick={() => alert(`Compare option isn't avaliable yet. Qafila-e-Miqat Team is working on it. Please try again later.`)}
+                  onClick={() => alert(`Compare option isn't available yet. Qafila-e-Miqat Team is working on it. Please try again later.`)}
                 >
                   Compare Now
                 </Button>
@@ -370,10 +322,9 @@ export default function App() {
             </div>
           </div>
         </div>
-)}
+      )}
 
       <main className="container mx-auto px-4 py-12">
-        {/* Selected/Featured Packages Section */}
         {!selectedTier && !selectedType && (
           <section id="packages" className="mb-16">
             <div className="text-center mb-8">
@@ -400,7 +351,6 @@ export default function App() {
           </section>
         )}
 
-        {/* All Packages Section */}
         <section className="mb-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -411,7 +361,6 @@ export default function App() {
             </p>
           </div>
 
-          {/* Filters and Sort */}
           <FiltersAndSort
             onFilterChange={setActiveFilters}
             onSortChange={handleSortChange}
@@ -420,7 +369,6 @@ export default function App() {
             filteredPackages={filteredPackages.length}
           />
 
-          {/* Package Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPackages.length > 0 ? (
               filteredPackages.map((pkg) => (
@@ -456,7 +404,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Trust Indicators */}
         <section className="mb-16 bg-muted/30 rounded-xl p-8">
           <FacilitiesSection />
         </section>
@@ -466,3 +413,20 @@ export default function App() {
     </div>
   );
 }
+
+// Main export wrapped in Suspense
+export default function App() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background font-sans flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-lg text-muted-foreground">Loading packages...</p>
+        </div>
+      </div>
+    }>
+      <UmrahPackagesContent />
+    </Suspense>
+  );
+}
+

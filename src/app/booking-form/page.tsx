@@ -5,7 +5,7 @@ import { CircleCheckBig, FileUser, BaggageClaim, CreditCard, Plus, Minus, MapPin
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
-import PhoneInput, { isValidPhoneNumber, parsePhoneNumber } from "react-phone-number-input";
+import PhoneInput, { parsePhoneNumber } from "react-phone-number-input";
 import { HeaderT } from '@/components/HeaderT';
 import { getPackageById, renderIcon } from '@/data/packages';
 import { Badge } from '@/components/ui/badge';
@@ -229,9 +229,13 @@ function BookingFormContent() {
     validateStep();
   };
 
-  // Handle input change
-  const handleInputChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
+  // Handle input change - Fixed type from 'any' to proper React types
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
+    const type = target instanceof HTMLInputElement ? target.type : undefined;
+    const checked = target instanceof HTMLInputElement ? target.checked : false;
 
     // Name validations
     if (name === "firstname") {
@@ -298,8 +302,9 @@ function BookingFormContent() {
     );
 
     let isValid = true;
-    inputs.forEach((input: any) => {
-      if (!input.value.trim()) {
+    inputs.forEach((input) => {
+      const element = input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      if (!element.value.trim()) {
         isValid = false;
       }
     });
@@ -350,7 +355,7 @@ function BookingFormContent() {
     }
   };
 
-  // Handle submit
+  // Handle submit - Fixed error type from 'any' to 'unknown'
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -404,10 +409,10 @@ const handleSubmit = async (e: React.FormEvent) => {
       console.error("❌ Submission failed:", result.error);
       alert("Something went wrong while submitting. Please try again.");
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("❌ API error:", error);
     alert("Server error while submitting. Please try again.");
-  }finally {
+  } finally {
     setIsSubmitting(false); // ⭐ Stop loading
   }
 
@@ -743,8 +748,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               {/* STEP 3 */}
               {currentStep === 2 && (
                 <div data-step="2" className="animate-fadeIn">
-                  <h2 className="text-2xl font-semibold text-center mb-6 text-[#AD5628]">Choose Your Payment Method</h2>
-
+                <h2 className="text-2xl font-semibold text-center mb-6 text-[#AD5628]">Choose Your Payment Method</h2>
                   <div className="flex flex-col gap-3 mb-6">
                     <label>
                       <input
@@ -851,7 +855,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     </button>
                   </div>
                   <div className="flex gap-3 pt-4">
-                    <i>Note: If your form isn’t submitting, check for missing or invalid fields.</i>
+                    <i>Note: If your form isn&apos;t submitting, check for missing or invalid fields.</i>
                   </div>
                 </div>
               )}
