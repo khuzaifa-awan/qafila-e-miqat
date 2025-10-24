@@ -647,6 +647,7 @@ import "react-phone-number-input/style.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import AnnouncementBar from "@/components/ui/announcementBar";
 
 // ============================================
 // ZOD SCHEMA DEFINITIONS
@@ -987,43 +988,18 @@ export default function CustomPackagePage() {
   useEffect(() => {
     validateStep();
   }, [currentStep, formData, departureDate, arrivalDate, phoneNumber]);
-
-  const [currentAnnouncementIndex, setCurrentAnnouncementIndex] = useState<number>(0);
+  
   const [isVisible, setIsVisible] = useState<boolean>(false);
-
-  const announcements: string[] = [
-    "✨ October Packages Are Live 🕋",
-    "⏳ Limited seats for October Umrah. Reserve today!",
-    "🎉 Special Group Discounts Available",
-    "🌟 VIP Services Available for Premium Experience"
-  ];
-
   useEffect(() => {
     setIsVisible(true);
-
-    const interval = setInterval(() => {
-      setCurrentAnnouncementIndex(
-        (prevIndex) => (prevIndex + 1) % announcements.length
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="font-sans">
+      {/* Announcement Banner */}
+      <AnnouncementBar/>
       <section className="relative w-full h-screen bg-center flex flex-col items-center justify-center">
-        <div className="absolute top-0 left-0 w-full z-30">
-          <div className="bg-[#C69C4F] text-[#FCF6EC] text-center py-2.5">
-            <div
-              key={currentAnnouncementIndex}
-              className="animate-slideIn text-sm sm:text-base font-medium"
-            >
-              {announcements[currentAnnouncementIndex]}
-            </div>
-          </div>
-        </div>
-
+        
         <header className="absolute top-12 left-0 w-full px-8 sm:px-14 lg:px-24 flex justify-between items-center z-30">
           <Link href="/">
             <Image
