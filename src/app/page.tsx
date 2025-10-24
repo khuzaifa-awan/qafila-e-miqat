@@ -44,7 +44,7 @@ export default function Home() {
 
         {/* Mobile background image */}
         <div className="md:hidden absolute inset-0 z-0">
-          <div className="bg-[url('/images/hero-mobile-1.jpg')] bg-cover bg-center w-full h-full opacity-100" />
+          <div className="bg-[url('/images/hero-mobile.jpg')] bg-cover bg-center w-full h-full opacity-100" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
         </div>
 
