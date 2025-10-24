@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     "Qafila-e-Miqat Travel & Tours | Best Umrah Packages 2025 from Pakistan",
   description:
     "Book the best and most affordable Umrah packages 2025 from Pakistan with Qafila-e-Miqat Travel. We offer complete Umrah services including visa, flights, hotel booking, and transport. Choose from group, private, family, or VIP Umrah packages available from Karachi, Lahore, Islamabad, Multan, Sialkot, Faisalabad, and Attock.",
+   icons: {
+    apple: "/apple-touch-icon.ico"
+}, 
   keywords: [
     "Qafila-e-Miqat",
     "Qafila e Miqat",
@@ -106,13 +109,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} antialiased`}
-        suppressHydrationWarning={true}
-      >
+      <head>
+        <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+      </head>
+      <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
         {children}
       </body>
     </html>
+
+    
   );
 }
 
