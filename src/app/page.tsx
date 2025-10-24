@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import AnnouncementBar from "@/components/ui/announcementBar";
 import AirlineTrustSection from "@/components/AirlineTrustSection";
 import PackageTierSection from "@/components/PackageTierSection";
-import HeroCanvas from '@/components/HeroCanvas'; 
+import UmrahHeroSections from '@/components/UmrahHeroSections'; 
 import FacilitiesSection from "@/components/FacilitiesSection";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -21,6 +21,14 @@ export default function Home() {
     { name: 'Packages', href: './umrah-packages' },
     { name: 'Request for Custom Package', href: './custom-package' },
   ];
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   useEffect(() => {
     setIsVisible(true);
@@ -32,11 +40,12 @@ export default function Home() {
       <AnnouncementBar/>
       {/* Hero Section */}
       {/* <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative"> */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative h-screen flex flex-col pt-8">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[100dvh] flex flex-col pt-8">
 
         {/* Mobile background image */}
         <div className="md:hidden absolute inset-0 z-0">
-          <div className="bg-[url('/images/hero-mobile.svg')] bg-cover bg-center w-full h-full opacity-100" />
+          <div className="bg-[url('/images/hero-mobile-1.jpg')] bg-cover bg-center w-full h-full opacity-100" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
         </div>
 
         {/* Header */}
@@ -154,7 +163,7 @@ export default function Home() {
         {/* Hadith Section */}
         <div className="w-full flex justify-center items-center px-4 sm:px-6 md:px-8 my-8 relative z-20">
           <div className="text-center max-w-7xl">
-            <p className="pt-4 sm:pt-0 text-base sm:text-lg md:text-base font-normal text-[#444] max-md:text-[#FCF6EC] leading-relaxed [text-shadow:_1px_1px_2px_rgba(0,0,0,0.2)] ">
+            <p className="pt-4 sm:pt-0 text-sm sm:text-lg md:text-base font-normal text-[#444] max-md:text-[#FCF6EC] leading-relaxed [text-shadow:_1px_1px_2px_rgba(0,0,0,0.2)] ">
               The Prophet ﷺ said:
               <span className="italic">
                 &quot;Alternate between Hajj and Umrah; for those two remove 
@@ -163,7 +172,7 @@ export default function Home() {
               </span>
             </p>
 
-            <p className="font-semibold sm:font-normal text-sm text-gray-500 mt-3">
+            <p className="font-semibold sm:font-normal text-sm text-accent mt-3">
               (Jamiʿ at-Tirmidhi - 810)
             </p>
           </div>
@@ -174,58 +183,13 @@ export default function Home() {
       <AirlineTrustSection />
       <PackageTierSection />
 
-      {/* -----------------------------------------------HeroCanvas----------------------------------------------- */}
+      {/* -----------------------------------------------UmrahHeroSection----------------------------------------------- */}
       
+     <UmrahHeroSections />
 
-     {/* Hero Canvas Section */}
-      <section className="relative w-full h-screen">
-        <HeroCanvas />
-      {/* Text container */}
-          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-12 z-20">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FCF6EC] max-w-[600px] leading-tight">
-              Step Into the Journey Allah Has Chosen for You
-            </h1>
-            <p className="text-lg italic text-[#FCF6EC] mt-4 max-w-[500px] leading-relaxed">
-              Answer the call of Allah and begin a journey that purifies your heart and soul. Every step brings you closer to His House, where prayers are heard, sins are forgiven, and faith is renewed.
-            </p>
-          </div>
-        </section>
-        <div className="h-screen w-full" />
+    {/* -----------------------------------------------Facilities Section----------------------------------------------- */}
 
-
-
-        {/* Airplane Section */}
-        <section className="relative h-screen flex items-center px-8 md:px-12">
-          <div className="flex flex-col items-start z-20">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FCF6EC] max-w-[600px] leading-tight">
-              Rising Towards the Land Allah Blessed    
-            </h1>
-            <p className="text-lg italic text-[#FCF6EC] mt-4 max-w-[500px] leading-relaxed">
-              Let us guide you with care and devotion because this journey is more than travel, it brings you closer to Allah.
-            </p>
-          </div>
-        </section>
-        <div className="h-screen w-full" />
-
-
-        {/* Mecca Section */}
-        <section className="relative h-[200vh] lg:h-[200vh] flex items-center px-8 md:px-12">
-          <div className=" sticky top-1/2 -translate-y-1/2 flex flex-col items-start z-20 pt-20 md:pt-0">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FCF6EC] max-w-[600px] leading-tight">
-              The Heart of Faith, The House of Allah   
-            </h1>
-            <p className="text-lg italic text-[#FCF6EC] mt-4 max-w-[500px] leading-relaxed">
-              Here, faith is renewed, forgiveness is granted, and souls draw closer to Allah.
-            </p>
-            <Link href="/umrah-packages">
-            <button
-              className="mt-6 px-6 py-3 rounded-xl font-semibold bg-[#FCF6EC] text-[#4a4a4a] shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300"
-            >
-              Explore Packages
-            </button>
-            </Link>
-          </div>
-        </section>
+        
         
         <FacilitiesSection />
 

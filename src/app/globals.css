@@ -152,6 +152,17 @@ html {
   }
 }
 
+
+
+/* ------Canva------ */
+canvas {
+  display: block;
+  height: 100dvh !important;
+  width: 100vw !important;
+}
+
+
+
 .zoom-animation {
   animation: zoomInOut 1.5s ease-in-out forwards;
 }
