@@ -32,6 +32,8 @@
 
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 const poppins = Poppins({
@@ -120,6 +122,8 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
         {children}
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
 
