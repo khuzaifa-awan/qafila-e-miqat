@@ -220,7 +220,7 @@ export function PackageCard({
             className="w-full block"
           >
             <Button 
-              className="holographic-btn relative overflow-hidden rounded-lg bg-[#AD5628] !text-[#FCF6EC] py-2 font-semibold w-full" 
+              className="holographic-btn relative overflow-hidden text-lg rounded-lg bg-[#AD5628] !text-[#FCF6EC] py-2 font-semibold w-full" 
               size="lg"
             > 
               Book Now 

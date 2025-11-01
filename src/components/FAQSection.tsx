@@ -8,7 +8,7 @@ export function FAQSection() {
       id: 'faq-1',
       question: 'What documents are required for Umrah visa in 2025?',
       answer: `To apply for an Umrah visa in 2025, you will need the following: 
-      • A valid passport at least 6 months validity from the day you departure with 2 blank pages 
+      • A valid passport at least 8 months validity from the day you departure with 2 blank pages 
       • Recent passport-size photographs
       • CNIC copy for adults / B-Form for children 
       • Every pilgrim (aged 2+) must have valid vaccination certificates.

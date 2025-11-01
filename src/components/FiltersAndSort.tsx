@@ -33,7 +33,7 @@ export function FiltersAndSort({
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [priceRange, setPriceRange] = useState<[number, number]>(activeFilters.budget);
 
-  const durationOptions = ['7 days', '10 days', '14 days', '21 days', '30 days'];
+  const durationOptions = ['7 nights', '10 nights', '14 nights', '21 nights'];
   const starOptions = [3, 4, 5];
   const monthOptions = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -84,13 +84,13 @@ export function FiltersAndSort({
   const clearAllFilters = () => {
     const clearedFilters: FilterOptions = {
       duration: [],
-      budget: [200000, 500000],
+      budget: [200000, 700000],
       stars: [],
       month: [],
       flightType: []
     };
     onFilterChange(clearedFilters);
-    setPriceRange([200000, 500000]);
+    setPriceRange([200000, 700000]);
   };
 
   const getActiveFilterCount = () => {
@@ -98,7 +98,7 @@ export function FiltersAndSort({
            activeFilters.stars.length + 
            activeFilters.month.length + 
            activeFilters.flightType.length +
-           (priceRange[0] !== 200000 || priceRange[1] !== 500000 ? 1 : 0);
+           (priceRange[0] !== 200000 || priceRange[1] !== 700000 ? 1 : 0);
   };
 
   return (
@@ -115,6 +115,7 @@ export function FiltersAndSort({
             </Badge>
           )}
         </div>
+        
 
         {/* Sort and Filter Controls */}
         <div className="flex items-center gap-4">
@@ -201,7 +202,7 @@ export function FiltersAndSort({
                     setPriceRange(value as [number, number]);
                     handleFilterUpdate('budget', value);
                   }}
-                  max={500000}
+                  max={700000}
                   min={200000}
                   step={10000}
                   className="w-full"

@@ -452,7 +452,7 @@ function UmrahPackagesContent() {
   const [filteredPackages, setFilteredPackages] = useState<Package[]>([]);
   const [activeFilters, setActiveFilters] = useState<FilterOptions>({
     duration: [],
-    budget: [200000, 500000],
+    budget: [200000, 700000],
     stars: [],
     month: [],
     flightType: []
@@ -469,7 +469,7 @@ function UmrahPackagesContent() {
     // Reset filters to default
     setActiveFilters({
       duration: [],
-      budget: [200000, 500000],
+      budget: [200000, 700000],
       stars: [],
       month: [],
       flightType: []

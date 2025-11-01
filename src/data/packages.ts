@@ -29,6 +29,7 @@ interface PackageBase {
   food: string;   // NEW
   stayMAK: string;   // NEW
   stayMAD: string;   // NEW
+  transport: string;   // NEW
 }
 
 interface Package extends PackageBase {
@@ -52,264 +53,179 @@ export const iconMap: Record<CustomIconKey, string> = {
 // Base packages - Easy to add/remove seasonal packages
 const basePackages: Record<string, PackageBase> = {
 
-// ------------------------------ October Packages ------------------------------
-
-  october: {
-    name: "October Umrah Package",
-    duration: "14 days",
-    routes: ["Jeddah", "Makkah", "Madinah", "Jeddah"],
-    hotelMAK: "Dummy Hotel",
-    hotelMAD: "Dummy Hotel",
-    price: "279,800",
-    discountedPrice: "270,800",
-    seatsLeft: 13,
-    departureDate: "12 October, 2025",
-    returnDate: "26 October, 2025",
-    makkahDistance: "100m",
-    madinahDistance: "150m",
-    departureCity: "Karachi",
-    people: "2",
-    food: "No meals included",
-    stayMAK: "4 nights",
-    stayMAD: "3 nights"
-  },
-  october1: {
-    name: "October Umrah Package",
-    duration: "8 days",
-    routes: ["Jeddah", "Makkah", "Madinah", "Jeddah"],
-    hotelMAK: "Movenpick Hotel - Hajar Tower",
-    hotelMAD: "Dar Al Eiman Al Haram Hotel",
-    price: "410,800",
-    discountedPrice: "410,800",
-    seatsLeft: 12,
-    departureDate: "16 October, 2025",
-    returnDate: "24 October, 2025",
-    makkahDistance: "100m",
-    madinahDistance: "150m",
-    departureCity: "Lahore",
-    people: "2",
-    food: "No meals included",
-    stayMAK: "4 nights",
-    stayMAD: "3 nights"
-  },
-  october_uc_quad: {
-    name: "October Umrah Package",
-    duration: "8 days",
-    routes: ["Jeddah Airport", "Makkah", "Madinah", "Jeddah Airport"],
-    hotelMAK: "Movenpick Hotel - Hajar Tower",
-    hotelMAD: "Dar Al Eiman Al Haram Hotel",
-    price: "394,992",
-    discountedPrice: "394,992", // if no discount, keep same
-    seatsLeft: 0, // you can set as needed
-    departureDate: "16 October, 2025",
-    returnDate: "24 October, 2025",
-    makkahDistance: "100m",
-    madinahDistance: "100m",
-    departureCity: "Islamabad",
-    people: "4",
-    food: "Breakfast only",
-    stayMAK: "4 nights",
-    stayMAD: "4 nights"  },
-  
-  october_uc_triple: {
-    name: "October Umrah Package",
-    duration: "8 days",
-    routes: ["Jeddah Airport", "Makkah", "Madinah", "Jeddah Airport"],
-    hotelMAK: "Movenpick Hotel - Hajar Tower",
-    hotelMAD: "Dar Al Eiman Al Haram Hotel",
-    price: "440000",
-    discountedPrice: "440000", // if no discount, keep same
-    seatsLeft: 0, // you can set as needed
-    departureDate: "16 October, 2025",
-    returnDate: "24 October, 2025",
-    makkahDistance: "100m",
-    madinahDistance: "100m",
-    departureCity: "Islamabad",
-    people: "4",
-    food: "Breakfast only",
-    stayMAK: "4 nights",
-    stayMAD: "4 nights"  },
 
 // ------------------------------ November Packages ------------------------------
 
-  november1_double: {
-    name: "November Umrah Package",
-    duration: "22 days",
+  november4_usa: {
+    name: "November Umrah Package USA",
+    duration: "10 nights",
     routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Fakhir Al Azizia",
-    hotelMAD: "Manazil Marjan",
-    price: "329,680",
-    discountedPrice: "317,000",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
-    people: "2",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"
-
-  },
-  november1_triple: {
-    name: "November Umrah Package",
-    duration: "22 days",
-    routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Fakhir Al Azizia",
-    hotelMAD: "Manazil Marjan",
-    price: "301,600",
-    discountedPrice: "290,000",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
-    people: "3",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"
-  },
-  november1_quad: {
-    name: "November Umrah Package",
-    duration: "22 days",
-    routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Fakhir Al Azizia",
-    hotelMAD: "Manazil Marjan",
-    price: "288,290",
-    discountedPrice: "277,300",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
+    hotelMAK: "Hilton Convention Makkah",
+    hotelMAD: "Crowne Plaza Madinah",
+    price: "525445",
+    discountedPrice: "520550",
+    seatsLeft: 8,
+    departureDate: "15 November, 2025",
+    returnDate: "25 November, 2025",
+    makkahDistance: "250m",
+    madinahDistance: "150m",
+    departureCity: "USA",
     people: "4",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"  
-  },
-  november1_sharing: {
-    name: "November Umrah Package",
-    duration: "22 days",
-    routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Fakhir Al Azizia",
-    hotelMAD: "Manazil Marjan",
-    price: "281,840",
-    discountedPrice: "271,000",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
-    people: "4+",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"  
-  },
-
-// -------- Nov Second Packages --------
-
-  november2_double: {
-    name: "November Umrah Package",
-    duration: "22 days",
-    routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Dhaif Hotel",
-    hotelMAD: "Manazil Marjan",
-    price: "329,680",
-    discountedPrice: "317,000",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
-    people: "2",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"
+    food: "Breakfast included",
+    stayMAK: "5 nights",
+    stayMAD: "5 nights",
+    transport: "H1 Private Transport"
 
   },
-  november2_triple: {
-    name: "November Umrah Package",
-    duration: "22 days",
+  november3_usa: {
+    name: "November Umrah Package USA",
+    duration: "10 nights",
     routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Dhaif Hotel",
-    hotelMAD: "Manazil Marjan",
-    price: "301,600",
-    discountedPrice: "290,000",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
+    hotelMAK: "Hilton Convention Makkah",
+    hotelMAD: "Crowne Plaza Madinah",
+    price: "580500",
+    discountedPrice: "580500",
+    seatsLeft: 8,
+    departureDate: "15 November, 2025",
+    returnDate: "25 November, 2025",
+    makkahDistance: "250m",
+    madinahDistance: "150m",
+    departureCity: "USA",
     people: "3",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"
+    food: "Breakfast included",
+    stayMAK: "5 nights",
+    stayMAD: "5 nights",
+    transport: "H1 Private Transport"
+
   },
-  november2_quad: {
-    name: "November Umrah Package",
-    duration: "22 days",
+  november2_usa: {
+    name: "November Umrah Package USA",
+    duration: "10 nights",
     routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Dhaif Hotel",
-    hotelMAD: "Manazil Marjan",
-    price: "288,290",
-    discountedPrice: "277,300",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
+    hotelMAK: "Hilton Convention Makkah",
+    hotelMAD: "Crowne Plaza Madinah",
+    price: "680710",
+    discountedPrice: "680710",
+    seatsLeft: 8,
+    departureDate: "15 November, 2025",
+    returnDate: "25 November, 2025",
+    makkahDistance: "250m",
+    madinahDistance: "150m",
+    departureCity: "USA",
+    people: "2",
+    food: "Breakfast included",
+    stayMAK: "5 nights",
+    stayMAD: "5 nights",
+    transport: "H1 Private Transport"
+
+  },
+ 
+  november4_usa2: {
+    name: "November Umrah Package USA",
+    duration: "7 nights",
+    routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
+    hotelMAK: "Pullman ZamZam Makkah",
+    hotelMAD: "Anwar Al Madinah Movenpick",
+    price: "442279",
+    discountedPrice: "437900",
+    seatsLeft: 12,
+    departureDate: "15 November, 2025",
+    returnDate: "22 November, 2025",
+    makkahDistance: "100m",
+    madinahDistance: "Only 25m",
+    departureCity: "USA",
     people: "4",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"  
+    food: "Breakfast included",
+    stayMAK: "3 nights",
+    stayMAD: "4 nights",
+    transport: "H1 Private Transport"
+
   },
-  november2_sharing: {
-    name: "November Umrah Package",
-    duration: "22 days",
+  november3_usa2: {
+    name: "November Umrah Package USA",
+    duration: "7 nights",
     routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
-    hotelMAK: "Dhaif Hotel",
-    hotelMAD: "Manazil Marjan",
-    price: "281,840",
-    discountedPrice: "271,000",
-    seatsLeft: 25,
-    departureDate: "23 November, 2025",
-    returnDate: "14 December, 2025",
-    makkahDistance: "7-8km (Shuttle Service Provided)",
-    madinahDistance: "2km (Shuttle Service Provided)",
-    departureCity: "Islamabad",
-    people: "4+",
-    food: "No meals included",
-    stayMAK: "6+6 nights",
-    stayMAD: "8 nights"  
+    hotelMAK: "Pullman ZamZam Makkah",
+    hotelMAD: "Anwar Al Madinah Movenpick",
+    price: "453700",
+    discountedPrice: "453700",
+    seatsLeft: 12,
+    departureDate: "15 November, 2025",
+    returnDate: "22 November, 2025",
+    makkahDistance: "100m",
+    madinahDistance: "Only 25m",
+    departureCity: "USA",
+    people: "4",
+    food: "Breakfast included",
+    stayMAK: "3 nights",
+    stayMAD: "4 nights",
+    transport: "H1 Private Transport"
+
   },
+  november2_usa2: {
+    name: "November Umrah Package USA",
+    duration: "7 nights",
+    routes: ["Riyadh", "Makkah", "Madinah", "Riyadh"],
+    hotelMAK: "Pullman ZamZam Makkah",
+    hotelMAD: "Anwar Al Madinah Movenpick",
+    price: "552700",
+    discountedPrice: "552700",
+    seatsLeft: 12,
+    departureDate: "15 November, 2025",
+    returnDate: "22 November, 2025",
+    makkahDistance: "100m",
+    madinahDistance: "Only 25m",
+    departureCity: "USA",
+    people: "4",
+    food: "Breakfast included",
+    stayMAK: "3 nights",
+    stayMAD: "4 nights",
+    transport: "H1 Private Transport"
+
+  },
+ 
 
 // ------------------------------ December Packages ------------------------------
 
-  december: {
-    name: "December Special Package",
-    duration: "12 days",
+  december4: {
+    name: "Special December Umrah with Taif Tour",
+    duration: "10 nights",
     routes: ["Jeddah", "Makkah", "Madinah", "Jeddah"],
-    hotelMAK: "Dummy Hotel",
-    hotelMAD: "Dummy Hotel",
-    price: "350,000",
-    discountedPrice: "330,000",
+    hotelMAK: "Anjum Makkah Hotel",
+    hotelMAD: "Crowne Plaza Madinah",
+    price: "539037",
+    discountedPrice: "533700",
     seatsLeft: 20,
-    departureDate: "20 December, 2025",
-    returnDate: "31 December, 2025",
-    makkahDistance: "120m",
-    madinahDistance: "120m",
+    departureDate: "25 December, 2025",
+    returnDate: "04 January, 2026",
+    makkahDistance: "200m",
+    madinahDistance: "150m",
     departureCity: "Islamabad",
-    people: "2",
-    food: "No meals included",
-    stayMAK: "4 nights",
-    stayMAD: "3 nights"
+    people: "4",
+    food: "Breakfast included",
+    stayMAK: "5 nights",
+    stayMAD: "5 nights",
+    transport: "Staria & SUV (Taif)"
+  },
+  december4_taif: {
+    name: "Special December Umrah with Taif Tour",
+    duration: "10 nights",
+    routes: ["Jeddah", "Makkah", "Madinah", "Jeddah"],
+    hotelMAK: "Anjum Makkah Hotel",
+    hotelMAD: "Crowne Plaza Madinah",
+    price: "550,200",
+    discountedPrice: "550,200",
+    seatsLeft: 20,
+    departureDate: "25 December, 2025",
+    returnDate: "04 January, 2026",
+    makkahDistance: "200m",
+    madinahDistance: "150m",
+    departureCity: "Islamabad",
+    people: "4",
+    food: "Breakfast included",
+    stayMAK: "5 nights",
+    stayMAD: "5 nights",
+    transport: "Staria & SUV (Taif)"
   }
 };
 
@@ -321,7 +237,7 @@ const createCommonPerks = (basePackage: PackageBase): Perk[] => [
   { icon: ShieldPlus, text: "Medical Insurance" },
   { icon: PlaneTakeoff, text: basePackage.departureDate },
   { icon: PlaneLanding, text: basePackage.returnDate },
-  { icon: CarFront, text: "Public Transport" },
+  { icon: CarFront, text:`${basePackage.transport}` },
   { icon: Utensils, text: basePackage.food },
 ];
 
@@ -357,27 +273,27 @@ const travelGroups: Record<GroupKey, { name: string; maxPeople: number }> = {
 // Available combinations - Easy to modify
 const packageAvailability: Record<string, Array<[TierKey, GroupKey]>> = {
   
-  // october1: [
-  //   ['premium', 'family'],
-  // ],
-  october_uc_quad: [
-    ['standard', 'family'],
+  november4_usa: [
+    ['premium', 'family'],
   ],
-  october_uc_triple: [
-    ['standard', 'family'],
+  november3_usa: [
+    ['premium', 'family'],
   ],
-  november1_double: [
-    ['economy', 'couple'],
+  november2_usa: [
+    ['premium', 'couple'],
   ],
-  november1_triple: [
-    ['economy', 'family'],
+  november4_usa2: [
+    ['premium', 'family'],
   ],
-  november1_quad: [
-    ['economy', 'family'],
+  november3_usa2: [
+    ['premium', 'family'],
   ],
-  november1_sharing: [
-    ['economy', 'group'],
-  ]
+  november2_usa2: [
+    ['premium', 'couple'],
+  ],
+  december4_taif: [
+    ['premium', 'family'],
+  ],
 };
 
 // Helper function to create a package
