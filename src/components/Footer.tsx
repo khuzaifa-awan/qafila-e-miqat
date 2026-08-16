@@ -33,7 +33,13 @@ const Footer = () => {
             </h3>
             <div className="space-y-2 text-sm">
               <p>
-                <a href="https://wa.me/923455631563" target="_blank" rel="noopener noreferrer">0345-5631563</a>
+                <a
+                  href="https://wa.me/923455631563"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  0345-5631563
+                </a>
               </p>
               <p>
                 <p>
@@ -76,7 +82,11 @@ const Footer = () => {
               >
                 Home
               </p>
-              <a href="https://wa.me/923455631563" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://wa.me/923455631563"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <p className="hover:text-accent cursor-pointer transition-colors">
                   Contact us
                 </p>
@@ -90,7 +100,9 @@ const Footer = () => {
               Office Place
             </h3>
             <div className="text-sm px-2">
-              <li>Near Jamia Masjid Noori, Mohallah Aminabad - Attock, Pakistan</li>
+              <li>
+                Near Jamia Masjid Noori, Mohallah Aminabad - Attock, Pakistan
+              </li>
               <li className="pt-2">New office location coming soon!</li>
             </div>
           </div>
@@ -103,8 +115,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-accent">
             <p>
-              Copyright © 2025 - All Rights are Reserved by Qafila-e-Miqat
-              Travel and Tours |{" "}
+              Copyrights © {new Date().getFullYear()} - All Rights are Reserved
+              by Qafila-e-Miqat Travel and Tours (SMC-PRIVATE) LIMITED. |{" "}
               <a
                 href="/terms-and-conditions"
                 className="hover:underline hover:text-accent transition-colors"
@@ -123,14 +135,14 @@ const Footer = () => {
             <p className="mt-1">
               Designed and Developed by{" "}
               <a
-                href="https://wa.me/923215745745"
+                href="https://thecreavox.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 underline hover:text-accent transition-colors"
                 onMouseEnter={() => setShowIcon(true)}
                 onMouseLeave={() => setShowIcon(false)}
               >
-                Creavox Media
+                Creavox
                 {showIcon && <SquareArrowOutUpRight size={16} />}
               </a>
             </p>

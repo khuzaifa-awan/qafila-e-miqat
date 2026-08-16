@@ -97,7 +97,7 @@ export function Header({ onSearch, searchQuery: externalSearchQuery }: HeaderPro
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colorso"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
