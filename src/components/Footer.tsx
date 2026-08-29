@@ -135,6 +135,20 @@ const Footer = () => {
             <p className="mt-1">
               Designed and Developed by{" "}
               <a
+                href="https://wa.me/923268664164"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 underline hover:text-accent transition-colors"
+                onMouseEnter={() => setShowIcon(true)}
+                onMouseLeave={() => setShowIcon(false)}
+              >
+                KA
+                {showIcon && <SquareArrowOutUpRight size={16} />}
+              </a>
+            </p>
+            {/* <p className="mt-1">
+              Designed and Developed by{" "}
+              <a
                 href="https://thecreavox.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -145,7 +159,7 @@ const Footer = () => {
                 Creavox
                 {showIcon && <SquareArrowOutUpRight size={16} />}
               </a>
-            </p>
+            </p> */}
           </div>
 
           {/* Social Media Icons */}
